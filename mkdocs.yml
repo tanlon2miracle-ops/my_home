@@ -1,0 +1,62 @@
+site_name: Lingbao Home
+site_description: 中文优先的技术与生活文档站
+site_url: https://tanlon2miracle-ops.github.io/my_home/
+docs_dir: docs
+site_dir: site
+use_directory_urls: true
+
+theme:
+  name: material
+  language: zh
+  font: false
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - content.tabs.link
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+extra_javascript:
+  - https://unpkg.com/mermaid@11.6.0/dist/mermaid.min.js
+  - javascripts/mermaid-init.js
+
+nav:
+  - 首页: index.md
+  - 技术:
+      - 总览: tech/index.md
+      - AI 算法:
+          - 栏目页: tech/ai-algorithms/index.md
+          - 安全 DPO 数据集设计: tech/ai-algorithms/safety-dpo-dataset-design/index.md
+      - 后端:
+          - 栏目页: tech/backend/index.md
+          - 用 MkDocs 搭一个能持续写的站点: tech/backend/hello-mkdocs/index.md
+      - 折腾记录:
+          - 栏目页: tech/tinkering/index.md
+          - 本地写作与发布工作流: tech/tinkering/local-writing-workflow/index.md
+  - 生活:
+      - 总览: life/index.md
+      - 随笔:
+          - 栏目页: life/essays/index.md
+          - 第一周随笔: life/essays/the-first-week/index.md
