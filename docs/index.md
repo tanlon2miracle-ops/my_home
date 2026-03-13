@@ -17,6 +17,10 @@
 
 - [安全 DPO 数据集设计](tech/ai-algorithms/safety-dpo-dataset-design/index.md)
 
+## 生活内容
+
+- [待产与新生儿购物清单整理](life/essays/pregnancy-newborn-shopping-checklist/index.md)
+
 ## 写作约定
 
 !!! note "内容模型"

@@ -17,3 +17,4 @@ docs/life/essays/<slug>/index.md
 ## 示例文章
 
 - [第一周随笔](the-first-week/index.md)
+- [待产与新生儿购物清单整理](pregnancy-newborn-shopping-checklist/index.md)
