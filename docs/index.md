@@ -20,6 +20,7 @@
 ## 生活内容
 
 - [待产与新生儿购物清单整理](life/essays/pregnancy-newborn-shopping-checklist/index.md)
+- [孕 30 周后到产后 3 个月的时间线规划](life/essays/pregnancy-birth-postpartum-timeline/index.md)
 
 ## 写作约定
 
