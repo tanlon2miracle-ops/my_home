@@ -1,12 +1,14 @@
 site_name: Lingbao Home
 site_description: 灵宝的个人文档站 — 技术笔记与生活随笔
 site_url: https://tanlon2miracle-ops.github.io/my_home/
+site_author: Lingbao
 docs_dir: docs
 site_dir: site
 use_directory_urls: true
 
 theme:
   name: material
+  custom_dir: overrides
   language: zh
   font: false
   icon:
@@ -43,8 +45,14 @@ theme:
     - toc.follow                 # 目录跟随滚动
 
 plugins:
+  - tags:
+      tags_file: tags/index.md
   - search:
       separator: '[\s\u200b\-]'  # 中文分词优化
+  - rss:
+      match_path: ".*"
+      date_from_meta:
+        as_creation: date
 
 markdown_extensions:
   - admonition
@@ -103,6 +111,6 @@ nav:
           - 第一周随笔: life/essays/the-first-week/index.md
           - 待产与新生儿购物清单整理: life/essays/pregnancy-newborn-shopping-checklist/index.md
           - 孕 30 周后到产后 3 个月的时间线规划: life/essays/pregnancy-birth-postpartum-timeline/index.md
-
+  - 标签: tags/index.md
 
 

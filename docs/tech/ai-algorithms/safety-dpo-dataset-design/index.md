@@ -1,3 +1,11 @@
+---
+tags:
+  - AI
+  - LLM
+  - DPO
+  - 安全对齐
+date: 2026-03-11
+---
 # 安全 DPO 数据集设计
 
 !!! abstract "一句话结论"
@@ -338,3 +346,4 @@ flowchart TD
 
 - [返回 AI 算法栏目](../index.md)
 - [返回首页](../../../index.md)
+

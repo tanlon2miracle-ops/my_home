@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {{ super() }}
+
+  <!-- Giscus Comments -->
+  {% if page and page.meta and page.meta.comments != false and not page.is_homepage %}
+  <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(220, 38, 38, 0.2);">
+    <h2 style="font-family: 'Orbitron', sans-serif; font-size: 0.9em; letter-spacing: 0.1em; color: #ff6600; text-transform: uppercase; margin-bottom: 1.5rem;">▸ COMMENTS — 评论区</h2>
+    <script src="https://giscus.app/client.js"
+            data-repo="tanlon2miracle-ops/my_home"
+            data-repo-id=""
+            data-category="General"
+            data-category-id=""
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme="noborder_dark"
+            data-lang="zh-CN"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+  {% endif %}
+{% endblock %}
