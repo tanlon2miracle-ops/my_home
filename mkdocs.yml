@@ -15,17 +15,15 @@ theme:
     logo: material/home-circle
   favicon: null                       # 可后续替换为自定义 favicon
   palette:
-    # ——— 亮色（可爱清新）———
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
+    # ——— 亮色（默认，不跟系统）———
+    - scheme: default
       primary: white
       accent: light-blue
       toggle:
         icon: material/weather-sunny
         name: 切换到暗色模式 🌙
-    # ——— 暗色 ———
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
+    # ——— 暗色（手动切换）———
+    - scheme: slate
       primary: indigo
       accent: pink
       toggle:
