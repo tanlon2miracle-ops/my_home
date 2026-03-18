@@ -3,14 +3,60 @@ hide:
   - toc
 ---
 
-# 🏠 欢迎来到 Lingbao Home
+<style>
+.md-content__inner { max-width: none !important; }
+.hero-section {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+  position: relative;
+}
+.hero-section h1 {
+  font-size: 3em !important;
+  margin-bottom: 0.3em;
+}
+.hero-tagline {
+  font-size: 1.25em;
+  color: var(--md-default-fg-color--light);
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  line-height: 1.8;
+}
+.hero-tagline strong {
+  color: #c084fc;
+}
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 1.5em;
+  font-weight: 800;
+  margin: 2.5rem 0 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid;
+  border-image: linear-gradient(135deg, #ff6b9d, #c084fc, #60a5fa) 1;
+}
+.footer-msg {
+  text-align: center;
+  color: var(--md-default-fg-color--lighter);
+  font-size: 0.9em;
+  padding: 3em 0 1em;
+}
+</style>
 
-> 一个中文优先的文档站，按「技术 / 生活」双主栏组织内容。  
-> 首版聚焦**稳定写作**和**持续发布**，轻装上阵。
+<div class="hero-section" markdown>
+
+# 🏠 Lingbao Home
+
+<div class="hero-tagline">
+一个中文优先的文档站，按「技术 / 生活」双主栏组织内容。<br>
+首版聚焦 <strong>稳定写作</strong> 和 <strong>持续发布</strong>，轻装上阵 ✨
+</div>
+
+</div>
 
 ---
 
-## :material-compass-outline: 快速导航
+<div class="section-title">🧭 快速导航</div>
 
 <div class="grid cards" markdown>
 
@@ -34,7 +80,7 @@ hide:
 
 ---
 
-## :material-fire: 最新内容
+<div class="section-title">🔥 最新内容</div>
 
 | 文章 | 栏目 | 说明 |
 | :--- | :--- | :--- |
@@ -46,14 +92,14 @@ hide:
 
 ---
 
-## :material-notebook-edit-outline: 写作约定
+<div class="section-title">📝 写作约定</div>
 
 !!! note "内容模型"
-    每篇文章使用**单独文件夹**承载，目录内保留 `index.md` 与资源文件，路径统一使用 `kebab-case`。
+    每篇文章使用 **单独文件夹** 承载，目录内保留 `index.md` 与资源文件，路径统一使用 `kebab-case`。
 
 ---
 
-## :material-rocket-launch-outline: 后续计划
+<div class="section-title">🚀 后续计划</div>
 
 - [x] 基础站点搭建 & CI 自动部署
 - [x] 技术 / 生活 双栏目结构
@@ -64,6 +110,6 @@ hide:
 
 ---
 
-<div style="text-align: center; color: var(--md-default-fg-color--lighter); font-size: 0.85em; padding: 2em 0 1em;">
-  用 ❤️ 和 MkDocs Material 构建 · 内容持续更新中
+<div class="footer-msg">
+  用 ❤️ 和 MkDocs Material 构建 · 内容持续更新中 ✨
 </div>
