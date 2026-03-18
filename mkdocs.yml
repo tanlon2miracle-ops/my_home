@@ -45,8 +45,7 @@ theme:
     - toc.follow                 # 目录跟随滚动
 
 plugins:
-  - tags:
-      tags_file: tags/index.md
+  - tags
   - search:
       separator: '[\s\u200b\-]'  # 中文分词优化
 
@@ -108,6 +107,7 @@ nav:
           - 待产与新生儿购物清单整理: life/essays/pregnancy-newborn-shopping-checklist/index.md
           - 孕 30 周后到产后 3 个月的时间线规划: life/essays/pregnancy-birth-postpartum-timeline/index.md
   - 标签: tags/index.md
+
 
 
 
