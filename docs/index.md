@@ -5,58 +5,112 @@ hide:
 
 <style>
 .md-content__inner { max-width: none !important; }
-.hero-section {
+.eva-hero {
   text-align: center;
-  padding: 3rem 1rem 2rem;
+  padding: 4rem 1rem 2rem;
   position: relative;
+  overflow: hidden;
 }
-.hero-section h1 {
-  font-size: 3em !important;
-  margin-bottom: 0.3em;
+.eva-hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(220, 38, 38, 0.02) 2px,
+    rgba(220, 38, 38, 0.02) 4px
+  );
+  pointer-events: none;
 }
-.hero-tagline {
-  font-size: 1.25em;
-  color: var(--md-default-fg-color--light);
+.eva-hero h1 {
+  font-size: 3.2em !important;
+  border-left: none !important;
+  padding-left: 0 !important;
+  text-align: center;
+}
+.eva-subtitle {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.8em;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(220, 38, 38, 0.6);
+  margin-bottom: 1rem;
+}
+.eva-tagline {
+  font-size: 1.15em;
+  color: rgba(224, 224, 224, 0.8);
   max-width: 700px;
   margin: 0 auto 2rem;
   line-height: 1.8;
 }
-.hero-tagline strong {
-  color: #c084fc;
+.eva-tagline strong {
+  color: #ff6600;
+  text-shadow: 0 0 8px rgba(255, 102, 0, 0.3);
 }
-.section-title {
+.eva-section {
   display: flex;
   align-items: center;
-  gap: 0.5em;
-  font-size: 1.5em;
-  font-weight: 800;
+  gap: 0.6em;
+  font-family: 'Orbitron', 'Noto Sans SC', sans-serif;
+  font-size: 1.1em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ff6600 !important;
   margin: 2.5rem 0 1.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 3px solid;
-  border-image: linear-gradient(135deg, #ff6b9d, #c084fc, #60a5fa) 1;
+  border-bottom: 2px solid #dc2626;
+  text-shadow: 0 0 10px rgba(255, 102, 0, 0.3);
 }
-.footer-msg {
+.eva-section::before {
+  content: "▸";
+  color: #dc2626;
+}
+.eva-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.4), transparent);
+  margin: 2rem 0;
+}
+.eva-footer-msg {
   text-align: center;
-  color: var(--md-default-fg-color--lighter);
-  font-size: 0.9em;
+  font-family: 'Orbitron', monospace;
+  font-size: 0.75em;
+  letter-spacing: 0.15em;
+  color: rgba(220, 38, 38, 0.4);
   padding: 3em 0 1em;
+  text-transform: uppercase;
+}
+.eva-nerv-logo {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.6em;
+  letter-spacing: 0.3em;
+  color: rgba(220, 38, 38, 0.15);
+  text-align: center;
+  margin-top: -0.5em;
+  margin-bottom: 2em;
 }
 </style>
 
-<div class="hero-section" markdown>
+<div class="eva-hero" markdown>
 
-# 🏠 Lingbao Home
+<div class="eva-subtitle">NERV DOCUMENTATION SYSTEM</div>
 
-<div class="hero-tagline">
+# LINGBAO HOME
+
+<div class="eva-nerv-logo">GOD'S IN HIS HEAVEN. ALL'S RIGHT WITH THE WORLD.</div>
+
+<div class="eva-tagline">
 一个中文优先的文档站，按「技术 / 生活」双主栏组织内容。<br>
-首版聚焦 <strong>稳定写作</strong> 和 <strong>持续发布</strong>，轻装上阵 ✨
+首版聚焦 <strong>稳定写作</strong> 和 <strong>持续发布</strong>，轻装上阵。
 </div>
 
 </div>
 
----
+<div class="eva-divider"></div>
 
-<div class="section-title">🧭 快速导航</div>
+<div class="eva-section">NAVIGATION — 快速导航</div>
 
 <div class="grid cards" markdown>
 
@@ -78,9 +132,9 @@ hide:
 
 </div>
 
----
+<div class="eva-divider"></div>
 
-<div class="section-title">🔥 最新内容</div>
+<div class="eva-section">LATEST — 最新内容</div>
 
 | 文章 | 栏目 | 说明 |
 | :--- | :--- | :--- |
@@ -90,16 +144,16 @@ hide:
 | [用 MkDocs 搭站点](tech/backend/hello-mkdocs/index.md) | 技术 · 后端 | 本站的搭建过程复盘 |
 | [本地写作与发布工作流](tech/tinkering/local-writing-workflow/index.md) | 技术 · 折腾 | 从 Markdown 到上线的自动化流程 |
 
----
+<div class="eva-divider"></div>
 
-<div class="section-title">📝 写作约定</div>
+<div class="eva-section">PROTOCOL — 写作约定</div>
 
 !!! note "内容模型"
     每篇文章使用 **单独文件夹** 承载，目录内保留 `index.md` 与资源文件，路径统一使用 `kebab-case`。
 
----
+<div class="eva-divider"></div>
 
-<div class="section-title">🚀 后续计划</div>
+<div class="eva-section">ROADMAP — 后续计划</div>
 
 - [x] 基础站点搭建 & CI 自动部署
 - [x] 技术 / 生活 双栏目结构
@@ -108,8 +162,8 @@ hide:
 - [ ] 评论系统集成（Giscus / Utterances）
 - [ ] 站点统计（Google Analytics / Umami）
 
----
+<div class="eva-divider"></div>
 
-<div class="footer-msg">
-  用 ❤️ 和 MkDocs Material 构建 · 内容持续更新中 ✨
+<div class="eva-footer-msg">
+  NERV DOCUMENTATION SYSTEM — BUILT WITH MKDOCS MATERIAL — ALWAYS UPDATING
 </div>
