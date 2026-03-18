@@ -1,41 +1,43 @@
-/* === Lingbao Home — NERV / EVA Theme === */
+/* === Lingbao Home — Cute & Fresh Theme 🌸 === */
 
 /* ========== 0. 字体导入 ========== */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
 
-/* ========== 1. EVA 配色系统 ========== */
+/* ========== 1. 可爱配色系统 ========== */
 :root {
-  --eva-black: #0a0a0a;
-  --eva-dark: #1a1a2e;
-  --eva-purple: #6b21a8;
-  --eva-green: #00ff41;
-  --eva-green-dim: rgba(0, 255, 65, 0.6);
-  --eva-orange: #ff6600;
-  --eva-orange-dim: rgba(255, 102, 0, 0.7);
-  --eva-red: #dc2626;
-  --eva-red-glow: rgba(220, 38, 38, 0.4);
-  --eva-yellow: #fbbf24;
-  --eva-cyan: #06b6d4;
-  --eva-white: #e0e0e0;
-  --eva-gradient: linear-gradient(135deg, #dc2626 0%, #ff6600 40%, #fbbf24 100%);
-  --eva-gradient-cool: linear-gradient(135deg, #6b21a8 0%, #dc2626 50%, #ff6600 100%);
-  --eva-scanline: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 255, 65, 0.03) 2px,
-    rgba(0, 255, 65, 0.03) 4px
-  );
-  --eva-font: 'Orbitron', 'Noto Sans SC', sans-serif;
-  --eva-font-body: 'Noto Sans SC', sans-serif;
+  --cute-white: #FFFFFF;
+  --cute-bg: #F0F8FF;
+  --cute-sky: #1488E6;
+  --cute-sky-light: #6BB8F0;
+  --cute-sky-dim: rgba(20, 136, 230, 0.15);
+  --cute-pink: #FFB6C1;
+  --cute-pink-deep: #FF8BA7;
+  --cute-pink-dim: rgba(255, 182, 193, 0.3);
+  --cute-yellow: #FFD100;
+  --cute-yellow-dim: rgba(255, 209, 0, 0.2);
+  --cute-mint: #A8E6CF;
+  --cute-lavender: #D4AFFF;
+  --cute-text: #333333;
+  --cute-text-light: #666666;
+  --cute-shadow: 0 4px 16px rgba(20, 136, 230, 0.08), 0 2px 8px rgba(255, 182, 193, 0.06);
+  --cute-shadow-hover: 0 8px 30px rgba(20, 136, 230, 0.12), 0 4px 12px rgba(255, 182, 193, 0.1);
+  --cute-glass: rgba(255, 255, 255, 0.7);
+  --cute-glass-border: rgba(255, 255, 255, 0.5);
+  --cute-radius: 16px;
+  --cute-radius-sm: 12px;
+  --cute-font: 'Nunito', 'Noto Sans SC', sans-serif;
+  --cute-font-body: 'Noto Sans SC', sans-serif;
 }
 
 /* ========== 2. 全局布局 ========== */
+body {
+  background: var(--cute-bg) !important;
+}
 .md-grid {
   max-width: 100% !important;
 }
 .md-main__inner {
-  max-width: 1600px !important;
+  max-width: 1400px !important;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
@@ -48,260 +50,309 @@
 }
 .md-typeset {
   max-width: none !important;
-  font-family: var(--eva-font-body);
+  font-family: var(--cute-font-body);
+  color: var(--cute-text);
+  line-height: 1.8;
 }
 .md-sidebar--primary { width: 15rem; }
 .md-sidebar--secondary { width: 13rem; }
 
-/* ========== 3. 顶部导航 → NERV 风格 ========== */
+/* ========== 3. 顶部导航 → 通透磨砂 ========== */
 .md-header {
-  background: linear-gradient(90deg, #0a0a0a 0%, #1a0a0a 30%, #2d0a0a 60%, #0a0a0a 100%) !important;
-  border-bottom: 2px solid var(--eva-orange);
-  box-shadow: 0 2px 20px var(--eva-red-glow), inset 0 -1px 0 rgba(255, 102, 0, 0.3);
-  position: relative;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(20, 136, 230, 0.1) !important;
+  box-shadow: 0 2px 16px rgba(20, 136, 230, 0.06);
 }
 .md-header::after {
-  content: "";
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--eva-orange), var(--eva-red), var(--eva-orange), transparent);
+  display: none !important;
 }
 .md-header__title {
-  font-family: var(--eva-font) !important;
-  font-weight: 900 !important;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--eva-orange) !important;
-  text-shadow: 0 0 10px var(--eva-orange-dim);
+  font-family: var(--cute-font) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em;
+  color: var(--cute-sky) !important;
+}
+.md-header .md-header__button,
+.md-header .md-icon {
+  color: var(--cute-sky) !important;
 }
 
 /* Tab 导航 */
 .md-tabs {
-  background: rgba(10, 10, 10, 0.95) !important;
-  border-bottom: 1px solid rgba(220, 38, 38, 0.3);
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(20, 136, 230, 0.08);
 }
 .md-tabs__link {
-  font-family: var(--eva-font) !important;
+  font-family: var(--cute-font) !important;
   font-weight: 700;
-  font-size: 0.7em;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  opacity: 0.7;
-  color: var(--eva-white) !important;
+  font-size: 0.85em;
+  opacity: 0.6;
+  color: var(--cute-text) !important;
+  transition: all 0.3s ease;
 }
 .md-tabs__link--active {
   opacity: 1;
-  color: var(--eva-orange) !important;
-  text-shadow: 0 0 8px var(--eva-orange-dim);
+  color: var(--cute-sky) !important;
 }
 .md-tabs__link:hover {
   opacity: 1;
-  color: var(--eva-red) !important;
+  color: var(--cute-pink-deep) !important;
 }
 
-/* ========== 4. 标题 → 机甲风 ========== */
+/* ========== 4. 标题 → 圆润可爱 ========== */
 .md-typeset h1 {
-  font-family: var(--eva-font) !important;
-  font-size: 2.2em !important;
+  font-family: var(--cute-font) !important;
+  font-size: 2em !important;
   font-weight: 900 !important;
-  color: var(--eva-orange) !important;
-  -webkit-text-fill-color: var(--eva-orange) !important;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  text-shadow: 0 0 20px var(--eva-orange-dim), 0 0 40px rgba(255, 102, 0, 0.2);
-  border-left: 4px solid var(--eva-red);
-  padding-left: 0.5em;
-  line-height: 1.3;
+  color: var(--cute-sky) !important;
+  -webkit-text-fill-color: var(--cute-sky) !important;
+  letter-spacing: 0.02em;
+  border-left: 4px solid var(--cute-pink);
+  padding-left: 0.6em;
+  line-height: 1.4;
+  border-radius: 2px;
 }
 .md-typeset h2 {
-  font-family: var(--eva-font) !important;
-  font-weight: 700;
-  color: var(--eva-red) !important;
-  letter-spacing: 0.05em;
-  border-bottom: 2px solid var(--eva-red);
+  font-family: var(--cute-font) !important;
+  font-weight: 800;
+  color: var(--cute-sky) !important;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid var(--cute-pink);
   padding-bottom: 0.3em;
   position: relative;
 }
 .md-typeset h2::before {
-  content: "▸ ";
-  color: var(--eva-orange);
+  content: "🌸 ";
 }
 .md-typeset h3 {
+  font-family: var(--cute-font) !important;
   font-weight: 700;
-  color: var(--eva-orange) !important;
-  letter-spacing: 0.03em;
+  color: var(--cute-pink-deep) !important;
+}
+.md-typeset h3::before {
+  content: "✨ ";
 }
 
-/* ========== 5. Grid Cards → EVA 面板 ========== */
+/* ========== 5. Grid Cards → 云朵卡片 ========== */
 .md-typeset .grid.cards > ul {
   gap: 1.5rem;
 }
 .md-typeset .grid.cards > ul > li {
-  border: 1px solid rgba(220, 38, 38, 0.4) !important;
-  border-radius: 2px !important;
-  background: linear-gradient(180deg, rgba(26, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%);
-  box-shadow: 0 0 15px rgba(220, 38, 38, 0.1), inset 0 1px 0 rgba(255, 102, 0, 0.1);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(20, 136, 230, 0.12) !important;
+  border-radius: var(--cute-radius) !important;
+  background: var(--cute-glass) !important;
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  box-shadow: var(--cute-shadow);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   position: relative;
+  border-left: 3px solid transparent !important;
 }
 .md-typeset .grid.cards > ul > li::before {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: var(--eva-gradient);
+  background: linear-gradient(90deg, var(--cute-sky), var(--cute-pink), var(--cute-yellow));
+  border-radius: var(--cute-radius) var(--cute-radius) 0 0;
 }
 .md-typeset .grid.cards > ul > li::after {
-  content: "NERV";
+  content: "🐳";
   position: absolute;
-  top: 10px; right: 10px;
-  font-family: var(--eva-font);
-  font-size: 0.55em;
-  letter-spacing: 0.2em;
-  color: rgba(220, 38, 38, 0.2);
+  top: 12px; right: 12px;
+  font-size: 0.9em;
+  opacity: 0.3;
 }
 .md-typeset .grid.cards > ul > li:hover {
-  transform: translateY(-4px);
-  border-color: var(--eva-orange) !important;
-  box-shadow: 0 0 30px rgba(255, 102, 0, 0.2), 0 8px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-6px);
+  border-color: var(--cute-sky-light) !important;
+  box-shadow: var(--cute-shadow-hover);
 }
 
-/* ========== 6. 表格 → 战术显示 ========== */
+/* ========== 6. 表格 → 圆润清新 ========== */
 .md-typeset table:not([class]) {
-  border-radius: 2px;
+  border-radius: var(--cute-radius-sm);
   overflow: hidden;
-  border: 1px solid rgba(220, 38, 38, 0.3);
-  box-shadow: 0 0 15px rgba(220, 38, 38, 0.05);
+  border: 1px solid rgba(20, 136, 230, 0.12);
+  box-shadow: var(--cute-shadow);
   width: 100%;
   display: table;
 }
 .md-typeset table:not([class]) thead {
-  background: linear-gradient(90deg, #1a0505 0%, #2d0a0a 50%, #1a0505 100%) !important;
+  background: linear-gradient(135deg, var(--cute-sky-dim), rgba(255, 182, 193, 0.1)) !important;
 }
 .md-typeset table:not([class]) thead th {
-  color: var(--eva-orange) !important;
-  font-family: var(--eva-font) !important;
+  color: var(--cute-sky) !important;
+  font-family: var(--cute-font) !important;
   font-weight: 700;
-  font-size: 0.8em;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 0.85em;
   padding: 0.8em 1em;
-  border-bottom: 2px solid var(--eva-red);
+  border-bottom: 2px solid var(--cute-pink);
 }
 .md-typeset table:not([class]) tbody tr {
   transition: background 0.2s;
-  border-bottom: 1px solid rgba(220, 38, 38, 0.1);
+  border-bottom: 1px solid rgba(20, 136, 230, 0.06);
 }
 .md-typeset table:not([class]) tbody tr:hover {
-  background: rgba(220, 38, 38, 0.05);
+  background: rgba(20, 136, 230, 0.03);
 }
 .md-typeset table:not([class]) td {
   padding: 0.7em 1em;
 }
 
-/* ========== 7. Admonition → 警告面板 ========== */
+/* ========== 7. Admonition → 气泡提示 ========== */
 .md-typeset .admonition,
 .md-typeset details {
-  border-radius: 2px !important;
-  border: 1px solid rgba(220, 38, 38, 0.3) !important;
-  border-left: 4px solid var(--eva-red) !important;
-  background: linear-gradient(90deg, rgba(220, 38, 38, 0.05) 0%, transparent 30%) !important;
-  box-shadow: 0 0 10px rgba(220, 38, 38, 0.05);
+  border-radius: var(--cute-radius) !important;
+  border: 1px solid rgba(20, 136, 230, 0.15) !important;
+  border-left: 4px solid var(--cute-sky) !important;
+  background: var(--cute-glass) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--cute-shadow);
+  position: relative;
+  overflow: visible;
+}
+/* 气泡小尾巴（仅 note 类型） */
+.md-typeset .admonition.note::after,
+.md-typeset details.note::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 24px;
+  width: 16px;
+  height: 16px;
+  background: var(--cute-glass);
+  border: 1px solid rgba(20, 136, 230, 0.15);
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
 }
 .md-typeset .admonition-title,
 .md-typeset details summary {
-  font-family: var(--eva-font) !important;
-  font-size: 0.85em;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-family: var(--cute-font) !important;
+  font-weight: 700;
+  font-size: 0.9em;
+  border-radius: var(--cute-radius) var(--cute-radius) 0 0;
+}
+/* 可爱 Emoji 覆盖默认图标 */
+.md-typeset .admonition.note > .admonition-title::before,
+.md-typeset details.note > summary::before {
+  content: "🌸 " !important;
+}
+.md-typeset .admonition.tip > .admonition-title::before,
+.md-typeset details.tip > summary::before {
+  content: "✨ " !important;
+}
+.md-typeset .admonition.warning > .admonition-title::before,
+.md-typeset details.warning > summary::before {
+  content: "🐾 " !important;
+}
+.md-typeset .admonition.info > .admonition-title::before,
+.md-typeset details.info > summary::before {
+  content: "🐳 " !important;
 }
 
-/* ========== 8. 代码块 → 终端风格 ========== */
+/* ========== 8. 代码块 → 圆角柔和 ========== */
 .md-typeset pre {
-  border-radius: 2px;
-  border: 1px solid rgba(0, 255, 65, 0.15);
-  box-shadow: 0 0 10px rgba(0, 255, 65, 0.05);
+  border-radius: var(--cute-radius-sm) !important;
+  border: 1px solid rgba(20, 136, 230, 0.1);
+  box-shadow: var(--cute-shadow);
   position: relative;
+  overflow: hidden;
 }
 .md-typeset pre > code {
-  border-radius: 2px;
+  border-radius: var(--cute-radius-sm) !important;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
 .md-typeset pre::before {
-  content: "TERMINAL";
+  content: "🐾 code";
   position: absolute;
-  top: 4px; right: 8px;
-  font-family: var(--eva-font);
-  font-size: 0.5em;
-  letter-spacing: 0.15em;
-  color: rgba(0, 255, 65, 0.2);
+  top: 6px; right: 10px;
+  font-family: var(--cute-font);
+  font-size: 0.55em;
+  font-weight: 700;
+  color: var(--cute-pink);
+  opacity: 0.5;
   z-index: 1;
 }
 
-/* ========== 9. 链接 ========== */
+/* ========== 9. 链接 → 粉蓝渐变 ========== */
 .md-typeset a:not(.md-button):not(.md-nav__link):not(.md-source):not(.md-footer__link):not(.headerlink) {
-  color: var(--eva-orange);
+  color: var(--cute-sky);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: all 0.2s ease;
+  border-bottom: 1px dashed var(--cute-pink);
+  transition: all 0.3s ease;
 }
 .md-typeset a:not(.md-button):not(.md-nav__link):not(.md-source):not(.md-footer__link):not(.headerlink):hover {
-  color: var(--eva-red);
-  border-bottom-color: var(--eva-red);
-  text-shadow: 0 0 8px var(--eva-red-glow);
+  color: var(--cute-pink-deep);
+  border-bottom-color: var(--cute-pink-deep);
+  border-bottom-style: solid;
 }
 
 /* ========== 10. 搜索框 ========== */
 .md-search__input {
-  border-radius: 2px !important;
-  font-family: var(--eva-font) !important;
+  border-radius: 24px !important;
+  font-family: var(--cute-font) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(20, 136, 230, 0.15) !important;
+}
+.md-search__input::placeholder {
+  color: var(--cute-sky-light) !important;
 }
 
 /* ========== 11. 侧边栏 ========== */
 .md-nav__link--active {
-  color: var(--eva-orange) !important;
+  color: var(--cute-sky) !important;
   font-weight: 700;
 }
 .md-sidebar {
-  border-right: 1px solid rgba(220, 38, 38, 0.1);
+  border-right: 1px solid rgba(20, 136, 230, 0.06);
+}
+.md-nav__link:hover {
+  color: var(--cute-pink-deep) !important;
 }
 
 /* ========== 12. 返回顶部 ========== */
 .md-top {
-  background: var(--eva-gradient) !important;
+  background: linear-gradient(135deg, var(--cute-sky), var(--cute-pink)) !important;
   color: #fff !important;
-  border-radius: 2px;
-  font-family: var(--eva-font) !important;
-  font-size: 0.7em;
-  letter-spacing: 0.1em;
-  box-shadow: 0 4px 15px var(--eva-red-glow);
+  border-radius: 24px !important;
+  font-family: var(--cute-font) !important;
+  font-size: 0.8em;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(20, 136, 230, 0.2);
 }
 
-/* ========== 13. Footer → NERV ========== */
+/* ========== 13. Footer ========== */
 .md-footer {
-  background: linear-gradient(90deg, #0a0a0a 0%, #1a0505 50%, #0a0a0a 100%) !important;
-  border-top: 1px solid rgba(220, 38, 38, 0.3);
+  background: var(--cute-white) !important;
+  border-top: 1px solid rgba(20, 136, 230, 0.1);
 }
 
-/* ========== 14. 滚动条 ========== */
+/* ========== 14. 滚动条 → 粉蓝渐变 ========== */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--eva-gradient);
-  border-radius: 0;
+  background: linear-gradient(180deg, var(--cute-sky-light), var(--cute-pink));
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--eva-black);
+  background: var(--cute-bg);
+  border-radius: 10px;
 }
 
 /* ========== 15. 选中文字 ========== */
 ::selection {
-  background: rgba(220, 38, 38, 0.4);
-  color: #fff;
+  background: rgba(255, 182, 193, 0.4);
+  color: var(--cute-text);
 }
 
 /* ========== 16. Mermaid 图表 ========== */
@@ -309,34 +360,55 @@
   text-align: center;
 }
 
-/* ========== 17. Checkbox (roadmap) ========== */
+/* ========== 17. Checkbox → 可爱粉 ========== */
 .md-typeset [type="checkbox"]:checked + .task-list-indicator::before {
-  background-color: var(--eva-green);
+  background-color: var(--cute-pink);
 }
 
-/* ========== 18. 暗色模式（EVA 本身就是暗色，亮色也强制暗化） ========== */
+/* ========== 18. 亮色模式（默认主题） ========== */
 [data-md-color-scheme="default"] .md-main {
-  background: #0f0f0f;
+  background: var(--cute-bg);
 }
 [data-md-color-scheme="default"] .md-typeset {
-  color: var(--eva-white);
+  color: var(--cute-text);
 }
 [data-md-color-scheme="default"] .md-sidebar {
-  background: rgba(10, 10, 10, 0.95);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 [data-md-color-scheme="default"] .md-nav__link {
-  color: rgba(224, 224, 224, 0.7);
-}
-[data-md-color-scheme="default"] .md-nav__link:hover {
-  color: var(--eva-orange);
+  color: var(--cute-text-light);
 }
 [data-md-color-scheme="default"] .md-content {
-  background: #0f0f0f;
+  background: transparent;
 }
 
-/* Slate 模式也统一 */
+/* Slate 暗色模式适配 */
+[data-md-color-scheme="slate"] {
+  --cute-bg: #1a1a2e;
+  --cute-white: #22223b;
+  --cute-glass: rgba(34, 34, 59, 0.8);
+  --cute-glass-border: rgba(255, 255, 255, 0.1);
+  --cute-text: #e0e0e0;
+  --cute-text-light: #aaa;
+  --cute-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  --cute-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
 [data-md-color-scheme="slate"] .md-main {
-  background: #0a0a0a;
+  background: var(--cute-bg);
+}
+[data-md-color-scheme="slate"] .md-header {
+  background: rgba(34, 34, 59, 0.9) !important;
+}
+[data-md-color-scheme="slate"] .md-tabs {
+  background: rgba(34, 34, 59, 0.85) !important;
+}
+[data-md-color-scheme="slate"] .md-footer {
+  background: var(--cute-white) !important;
+}
+[data-md-color-scheme="slate"] .md-sidebar {
+  background: rgba(34, 34, 59, 0.7);
 }
 
 /* ========== 19. 响应式 ========== */
@@ -354,73 +426,70 @@
   }
 }
 
-/* ========== 20. CRT 扫描线全局动画 ========== */
-body::after {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(220, 38, 38, 0.015) 2px,
-    rgba(220, 38, 38, 0.015) 4px
-  );
-  pointer-events: none;
-  z-index: 9999;
-  animation: crt-scroll 10s linear infinite;
+/* ========== 20. 徽章标签 ========== */
+.cute-badge {
+  display: inline-block;
+  font-family: var(--cute-font);
+  font-size: 0.7em;
+  font-weight: 700;
+  padding: 0.15em 0.6em;
+  border-radius: 20px;
+  background: var(--cute-yellow);
+  color: #333;
+  letter-spacing: 0.02em;
 }
-@keyframes crt-scroll {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 200px; }
+.cute-badge--pink {
+  background: var(--cute-pink);
+  color: #fff;
+}
+.cute-badge--sky {
+  background: var(--cute-sky);
+  color: #fff;
+}
+.cute-badge--mint {
+  background: var(--cute-mint);
+  color: #333;
 }
 
-/* ========== 21. NERV 警戒带 (Header 底部) ========== */
-.md-header {
-  border-bottom: none !important;
-  position: relative;
+/* ========== 21. 装饰贴纸动画 ========== */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
-.md-header::after {
+.cute-sticker {
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+.cute-sticker:nth-child(2) { animation-delay: 0.5s; }
+.cute-sticker:nth-child(3) { animation-delay: 1s; }
+
+/* ========== 22. 气泡对话框样式 ========== */
+.chat-bubble {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(135deg, var(--cute-sky-dim), rgba(255, 182, 193, 0.15));
+  border: 1px solid rgba(20, 136, 230, 0.12);
+  border-radius: 20px 20px 20px 4px;
+  padding: 0.8em 1.2em;
+  margin: 0.5em 0;
+  font-size: 0.95em;
+  color: var(--cute-text);
+  box-shadow: var(--cute-shadow);
+}
+.chat-bubble::after {
   content: "";
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 4px;
-  background: repeating-linear-gradient(
-    -45deg,
-    #fbbf24,
-    #fbbf24 6px,
-    #0a0a0a 6px,
-    #0a0a0a 12px
-  ) !important;
-  z-index: 10;
+  bottom: -6px;
+  left: 18px;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, var(--cute-sky-dim), rgba(255, 182, 193, 0.15));
+  border-bottom: 1px solid rgba(20, 136, 230, 0.12);
+  border-right: 1px solid rgba(20, 136, 230, 0.12);
+  transform: rotate(45deg);
 }
 
-/* ========== 22. 硬朗面板 - 零圆角 ========== */
-.md-typeset .grid.cards > ul > li {
-  border-radius: 0 !important;
-}
-.md-typeset .admonition,
-.md-typeset details {
-  border-radius: 0 !important;
-}
-.md-typeset pre,
-.md-typeset pre > code {
-  border-radius: 0 !important;
-}
-.md-typeset table:not([class]) {
-  border-radius: 0 !important;
-}
-.md-search__input {
-  border-radius: 0 !important;
-}
-.md-top {
-  border-radius: 0 !important;
-}
-
-/* ========== 23. 卡片左侧粗边框 (终端面板感) ========== */
-.md-typeset .grid.cards > ul > li {
-  border-left: 3px solid var(--eva-red) !important;
-}
-.md-typeset .grid.cards > ul > li:hover {
-  border-left-color: var(--eva-orange) !important;
+/* ========== 23. 无 CRT 扫描线！纯净背景 ========== */
+body::after {
+  display: none !important;
 }

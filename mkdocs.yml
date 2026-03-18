@@ -15,22 +15,22 @@ theme:
     logo: material/home-circle
   favicon: null                       # 可后续替换为自定义 favicon
   palette:
-    # ——— 亮色 ———
+    # ——— 亮色（可爱清新）———
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: black
-      accent: deep-orange
+      primary: white
+      accent: light-blue
       toggle:
-        icon: material/brightness-7
-        name: 切换到暗色模式
+        icon: material/weather-sunny
+        name: 切换到暗色模式 🌙
     # ——— 暗色 ———
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: black
-      accent: deep-orange
+      primary: indigo
+      accent: pink
       toggle:
-        icon: material/brightness-4
-        name: 切换到亮色模式
+        icon: material/weather-night
+        name: 切换到亮色模式 ☀️
   features:
     - navigation.tabs            # 顶部 Tab 导航
     - navigation.tabs.sticky     # 滚动时 Tab 保持可见

@@ -2,103 +2,79 @@
 
 {% block content %}
 <style>
-.eva-404 {
+.cute-404 {
   text-align: center;
   padding: 6rem 2rem;
   position: relative;
-  overflow: hidden;
 }
-.eva-404::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(220, 38, 38, 0.03) 2px,
-    rgba(220, 38, 38, 0.03) 4px
-  );
-  pointer-events: none;
-  animation: scanline-scroll 8s linear infinite;
+.cute-404-emoji {
+  font-size: 5em;
+  display: inline-block;
+  animation: float-404 3s ease-in-out infinite;
+  margin-bottom: 1rem;
 }
-@keyframes scanline-scroll {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(100px); }
+@keyframes float-404 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(-3deg); }
+  75% { transform: translateY(-5px) rotate(3deg); }
 }
-.eva-404-alert {
-  font-family: 'Orbitron', monospace;
-  font-size: 0.8em;
-  letter-spacing: 0.3em;
-  color: #dc2626;
-  text-transform: uppercase;
-  animation: blink-alert 1s steps(1) infinite;
-  margin-bottom: 2rem;
-}
-@keyframes blink-alert {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0.3; }
-}
-.eva-404-code {
-  font-family: 'Orbitron', monospace;
+.cute-404-code {
+  font-family: 'Nunito', sans-serif;
   font-size: 8em;
   font-weight: 900;
-  color: #dc2626;
-  text-shadow: 0 0 30px rgba(220, 38, 38, 0.5), 0 0 60px rgba(220, 38, 38, 0.2);
+  background: linear-gradient(135deg, #1488E6, #FFB6C1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   line-height: 1;
-  margin: 0.5rem 0;
+  margin: 0.3rem 0;
 }
-.eva-404-msg {
-  font-family: 'Orbitron', monospace;
+.cute-404-msg {
+  font-family: 'Nunito', 'Noto Sans SC', sans-serif;
   font-size: 1.4em;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: #ff6600;
-  text-transform: uppercase;
-  text-shadow: 0 0 10px rgba(255, 102, 0, 0.3);
-  margin: 1.5rem 0;
+  font-weight: 800;
+  color: #1488E6;
+  margin: 1rem 0;
 }
-.eva-404-sub {
-  color: rgba(224, 224, 224, 0.6);
+.cute-404-sub {
+  color: #888;
   font-size: 1.1em;
-  margin: 1rem 0 2.5rem;
+  margin: 0.5rem 0 2.5rem;
 }
-.eva-404-btn {
+.cute-404-btn {
   display: inline-block;
-  font-family: 'Orbitron', monospace;
-  font-size: 0.85em;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+  font-size: 0.95em;
+  font-weight: 700;
   color: #fff;
-  background: linear-gradient(135deg, #dc2626 0%, #ff6600 100%);
+  background: linear-gradient(135deg, #1488E6, #FFB6C1);
   padding: 0.8em 2em;
+  border-radius: 30px;
   text-decoration: none;
   border: none;
-  transition: all 0.3s;
-  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(20, 136, 230, 0.25);
 }
-.eva-404-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+.cute-404-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(20, 136, 230, 0.3);
   color: #fff;
 }
-.eva-404-pattern {
-  font-family: 'Orbitron', monospace;
-  font-size: 0.6em;
-  letter-spacing: 0.2em;
-  color: rgba(220, 38, 38, 0.15);
-  margin-top: 3rem;
+.cute-404-deco {
+  font-size: 1.2em;
+  margin-top: 2rem;
+  opacity: 0.3;
 }
 </style>
 
-<div class="eva-404">
-  <div class="eva-404-alert">⚠ WARNING — AT FIELD DETECTED ⚠</div>
-  <div class="eva-404-code">404</div>
-  <div class="eva-404-msg">Signal Lost — Target Not Found</div>
-  <div class="eva-404-sub">指定页面不存在，或已被 A.T. 力场屏蔽。</div>
-  <a href="{{ config.site_url }}" class="eva-404-btn">▸ Return to NERV HQ</a>
-  <div class="eva-404-pattern">
-    NERV CENTRAL DOGMA — ERROR REPORT — PATTERN BLUE
+<div class="cute-404">
+  <div class="cute-404-emoji">🐾</div>
+  <div class="cute-404-code">404</div>
+  <div class="cute-404-msg">呜呜～ 页面走丢了</div>
+  <div class="cute-404-sub">这个页面可能搬家了，或者从来没来过这里呢 🌸</div>
+  <a href="{{ config.site_url }}" class="cute-404-btn">🏠 回到首页</a>
+  <div class="cute-404-deco">
+    🌸 · ✨ · 🐳 · 🐾 · 💕
   </div>
 </div>
 {% endblock %}
