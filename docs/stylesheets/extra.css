@@ -1,43 +1,50 @@
 /* === Lingbao Home — Anime-Inspired Theme === */
 
-/* ---------- 布局：撑满屏幕 ---------- */
+/* ========== 1. 全局布局：撑满屏幕 ========== */
+/* 外层网格容器 */
 .md-grid {
   max-width: 100% !important;
-  margin: 0 auto;
 }
+/* 三栏布局容器 */
 .md-main__inner {
-  max-width: 1400px;
+  max-width: 1600px !important;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
-/* 侧边栏宽度 */
+/* 正文区域不限宽 */
+.md-content {
+  max-width: none !important;
+}
+.md-content__inner {
+  max-width: none !important;
+  margin: 0 !important;
+}
+/* 侧边栏适当加宽 */
 .md-sidebar--primary {
-  width: 14rem;
+  width: 15rem;
 }
 .md-sidebar--secondary {
-  width: 14rem;
+  width: 13rem;
 }
-/* 正文占满剩余空间 */
-.md-content {
-  max-width: none;
+/* 文章内容区撑满 */
+.md-typeset {
+  max-width: none !important;
 }
 
-/* ---------- 动漫配色 & 装饰 ---------- */
+/* ========== 2. 动漫配色系统 ========== */
 :root {
   --anime-pink: #ff6b9d;
   --anime-purple: #c084fc;
   --anime-blue: #60a5fa;
   --anime-yellow: #fbbf24;
   --anime-gradient: linear-gradient(135deg, #ff6b9d 0%, #c084fc 50%, #60a5fa 100%);
-  --anime-bg-light: #fdf2f8;
   --anime-card-bg: rgba(255, 255, 255, 0.85);
 }
 [data-md-color-scheme="slate"] {
-  --anime-bg-light: #1a1025;
   --anime-card-bg: rgba(30, 20, 50, 0.85);
 }
 
-/* 顶部导航栏 → 渐变 */
+/* ========== 3. 顶部导航 → 渐变 ========== */
 .md-header {
   background: var(--anime-gradient) !important;
   box-shadow: 0 2px 20px rgba(255, 107, 157, 0.3);
@@ -46,8 +53,6 @@
   font-weight: 800 !important;
   letter-spacing: 0.05em;
 }
-
-/* Tab 导航栏也渐变 */
 .md-tabs {
   background: linear-gradient(135deg, #c084fc 0%, #60a5fa 100%) !important;
 }
@@ -59,9 +64,9 @@
   opacity: 1;
 }
 
-/* ---------- Hero 区域 ---------- */
-h1 {
-  font-size: 2.4em !important;
+/* ========== 4. 标题 → 渐变文字 ========== */
+.md-typeset h1 {
+  font-size: 2.2em !important;
   font-weight: 900 !important;
   background: var(--anime-gradient);
   -webkit-background-clip: text;
@@ -69,8 +74,13 @@ h1 {
   background-clip: text;
   line-height: 1.3;
 }
+.md-typeset h2 {
+  font-weight: 700;
+  border-bottom: 2px solid rgba(192, 132, 252, 0.2);
+  padding-bottom: 0.3em;
+}
 
-/* ---------- Grid Cards → 动漫卡片 ---------- */
+/* ========== 5. Grid Cards → 动漫卡片 ========== */
 .md-typeset .grid.cards > ul {
   gap: 1.5rem;
 }
@@ -87,9 +97,7 @@ h1 {
 .md-typeset .grid.cards > ul > li::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   height: 4px;
   background: var(--anime-gradient);
 }
@@ -99,13 +107,14 @@ h1 {
   box-shadow: 0 12px 30px rgba(192, 132, 252, 0.25);
 }
 
-/* ---------- 表格美化 ---------- */
+/* ========== 6. 表格美化 ========== */
 .md-typeset table:not([class]) {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 12px rgba(192, 132, 252, 0.1);
   border: 1px solid rgba(192, 132, 252, 0.2);
   width: 100%;
+  display: table;
 }
 .md-typeset table:not([class]) thead {
   background: var(--anime-gradient) !important;
@@ -125,7 +134,7 @@ h1 {
   padding: 0.7em 1em;
 }
 
-/* ---------- Admonition → 圆角 + 彩色左边框 ---------- */
+/* ========== 7. Admonition ========== */
 .md-typeset .admonition,
 .md-typeset details {
   border-radius: 12px !important;
@@ -133,7 +142,7 @@ h1 {
   box-shadow: 0 2px 10px rgba(192, 132, 252, 0.08);
 }
 
-/* ---------- 代码块 ---------- */
+/* ========== 8. 代码块 ========== */
 .md-typeset pre > code {
   border-radius: 12px;
 }
@@ -142,8 +151,8 @@ h1 {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* ---------- 链接 → 渐变下划线 ---------- */
-.md-typeset a:not(.md-button):not(.md-nav__link):not(.md-source):not(.md-footer__link) {
+/* ========== 9. 链接动画 ========== */
+.md-typeset a:not(.md-button):not(.md-nav__link):not(.md-source):not(.md-footer__link):not(.headerlink) {
   color: var(--anime-purple);
   text-decoration: none;
   background-image: linear-gradient(var(--anime-pink), var(--anime-pink));
@@ -152,23 +161,23 @@ h1 {
   background-repeat: no-repeat;
   transition: background-size 0.3s ease;
 }
-.md-typeset a:not(.md-button):not(.md-nav__link):not(.md-source):not(.md-footer__link):hover {
+.md-typeset a:not(.md-button):not(.md-nav__link):not(.md-source):not(.md-footer__link):not(.headerlink):hover {
   background-size: 100% 2px;
   color: var(--anime-pink);
 }
 
-/* ---------- 搜索框 ---------- */
+/* ========== 10. 搜索框 ========== */
 .md-search__input {
   border-radius: 20px !important;
 }
 
-/* ---------- 侧边栏当前项高亮 ---------- */
+/* ========== 11. 侧边栏高亮 ========== */
 .md-nav__link--active {
   color: var(--anime-purple) !important;
   font-weight: 700;
 }
 
-/* ---------- 返回顶部按钮 ---------- */
+/* ========== 12. 返回顶部 ========== */
 .md-top {
   background: var(--anime-gradient) !important;
   color: #fff !important;
@@ -176,12 +185,12 @@ h1 {
   box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
 }
 
-/* ---------- Footer ---------- */
+/* ========== 13. Footer ========== */
 .md-footer {
   background: linear-gradient(135deg, #1a1025 0%, #2d1b4e 100%);
 }
 
-/* ---------- 滚动条 ---------- */
+/* ========== 14. 滚动条 ========== */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -194,22 +203,19 @@ h1 {
   background: transparent;
 }
 
-/* ---------- 选中文字 ---------- */
+/* ========== 15. 选中文字 ========== */
 ::selection {
   background: rgba(192, 132, 252, 0.3);
   color: inherit;
 }
 
-/* ---------- Checkbox 列表 (roadmap) ---------- */
-.md-typeset .task-list-indicator::before {
-  background-color: var(--anime-purple);
-}
-.md-typeset [type="checkbox"]:checked + .task-list-indicator::before {
-  background-color: var(--anime-pink);
+/* ========== 16. Mermaid 图表居中 ========== */
+.md-typeset .mermaid {
+  text-align: center;
 }
 
-/* ---------- 暗色模式微调 ---------- */
-[data-md-color-scheme="slate"] h1 {
+/* ========== 17. 暗色模式 ========== */
+[data-md-color-scheme="slate"] .md-typeset h1 {
   -webkit-text-fill-color: transparent;
 }
 [data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li {
@@ -222,12 +228,17 @@ h1 {
   background: rgba(192, 132, 252, 0.08);
 }
 
-/* ---------- 响应式 ---------- */
+/* ========== 18. 响应式 ========== */
 @media (max-width: 960px) {
   .md-main__inner {
     padding: 0 1rem;
   }
-  h1 {
+  .md-typeset h1 {
     font-size: 1.8em !important;
+  }
+}
+@media (max-width: 76.25em) {
+  .md-sidebar--primary {
+    width: 12.1rem;
   }
 }
