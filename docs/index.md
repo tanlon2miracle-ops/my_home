@@ -150,6 +150,8 @@ hide:
 
 | 文章 | 栏目 | 说明 |
 | :--- | :--- | :--- |
+| [模型训练笔记地图](tech/ai-algorithms/current-llm-training-notes-map/index.md) | 技术 · AI 算法 | 当前训练知识结构总览与补全方向 |
+| [LLM 训练资料索引](tech/ai-algorithms/llm-training-reading-map/index.md) | 技术 · AI 算法 | 课程→论文→工程→中文项目的阅读主线 |
 | [安全 DPO 数据集设计](tech/ai-algorithms/safety-dpo-dataset-design/index.md) | 技术 · AI 算法 | LLM 安全对齐的数据集工程实践 |
 | [待产与新生儿购物清单](life/essays/pregnancy-newborn-shopping-checklist/index.md) | 生活 · 随笔 | 从研究到下单的完整清单 |
 | [孕 30 周→产后 3 个月时间线](life/essays/pregnancy-birth-postpartum-timeline/index.md) | 生活 · 随笔 | 关键节点与待办事项规划 |

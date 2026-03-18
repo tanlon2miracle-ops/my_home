@@ -93,6 +93,8 @@ nav:
       - tech/index.md
       - AI 算法:
           - tech/ai-algorithms/index.md
+          - 模型训练笔记地图: tech/ai-algorithms/current-llm-training-notes-map/index.md
+          - LLM 训练资料索引: tech/ai-algorithms/llm-training-reading-map/index.md
           - 安全 DPO 数据集设计: tech/ai-algorithms/safety-dpo-dataset-design/index.md
       - 后端:
           - tech/backend/index.md
