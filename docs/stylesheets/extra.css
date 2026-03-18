@@ -353,3 +353,74 @@
     width: 12.1rem;
   }
 }
+
+/* ========== 20. CRT 扫描线全局动画 ========== */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(220, 38, 38, 0.015) 2px,
+    rgba(220, 38, 38, 0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+  animation: crt-scroll 10s linear infinite;
+}
+@keyframes crt-scroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 200px; }
+}
+
+/* ========== 21. NERV 警戒带 (Header 底部) ========== */
+.md-header {
+  border-bottom: none !important;
+  position: relative;
+}
+.md-header::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #fbbf24,
+    #fbbf24 6px,
+    #0a0a0a 6px,
+    #0a0a0a 12px
+  ) !important;
+  z-index: 10;
+}
+
+/* ========== 22. 硬朗面板 - 零圆角 ========== */
+.md-typeset .grid.cards > ul > li {
+  border-radius: 0 !important;
+}
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 0 !important;
+}
+.md-typeset pre,
+.md-typeset pre > code {
+  border-radius: 0 !important;
+}
+.md-typeset table:not([class]) {
+  border-radius: 0 !important;
+}
+.md-search__input {
+  border-radius: 0 !important;
+}
+.md-top {
+  border-radius: 0 !important;
+}
+
+/* ========== 23. 卡片左侧粗边框 (终端面板感) ========== */
+.md-typeset .grid.cards > ul > li {
+  border-left: 3px solid var(--eva-red) !important;
+}
+.md-typeset .grid.cards > ul > li:hover {
+  border-left-color: var(--eva-orange) !important;
+}

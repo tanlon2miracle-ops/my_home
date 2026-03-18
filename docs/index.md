@@ -91,11 +91,24 @@ hide:
   margin-top: -0.5em;
   margin-bottom: 2em;
 }
+.magi-label {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.7em;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.3em;
+}
+.sync-ratio {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.7em;
+  letter-spacing: 0.1em;
+  color: rgba(0, 255, 65, 0.6);
+}
 </style>
 
 <div class="eva-hero" markdown>
 
-<div class="eva-subtitle">NERV DOCUMENTATION SYSTEM</div>
+<div class="eva-subtitle">NERV DOCUMENTATION SYSTEM v2.6</div>
 
 # LINGBAO HOME
 
@@ -110,31 +123,45 @@ hide:
 
 <div class="eva-divider"></div>
 
-<div class="eva-section">NAVIGATION — 快速导航</div>
+<div class="eva-section">MAGI SYSTEM — 导航终端</div>
 
 <div class="grid cards" markdown>
 
--   :material-cpu-64-bit:{ .lg .middle } **技术笔记**
+-   :material-cpu-64-bit:{ .lg .middle } <span class="magi-label" style="color: #fbbf24;">[ MELCHIOR-1 ]</span> **技术档案**
 
     ---
+
+    <span class="sync-ratio">SYNC RATIO: 41.3%</span>
 
     AI 算法、后端架构、折腾记录……把踩过的坑变成可复用的知识。
 
-    [:octicons-arrow-right-24: 进入技术区](tech/index.md)
+    [:octicons-arrow-right-24: ACCESS TERMINAL](tech/index.md)
 
--   :material-coffee-outline:{ .lg .middle } **生活随笔**
+-   :material-coffee-outline:{ .lg .middle } <span class="magi-label" style="color: #06b6d4;">[ BALTHASAR-2 ]</span> **生活记录**
 
     ---
 
+    <span class="sync-ratio">SYNC RATIO: 67.8%</span>
+
     记录生活中值得写下来的事，不求完美，只求真实。
 
-    [:octicons-arrow-right-24: 进入生活区](life/index.md)
+    [:octicons-arrow-right-24: ACCESS TERMINAL](life/index.md)
+
+-   :material-tag-multiple:{ .lg .middle } <span class="magi-label" style="color: #c084fc;">[ CASPER-3 ]</span> **标签索引**
+
+    ---
+
+    <span class="sync-ratio">TAGS INDEXED: ACTIVE</span>
+
+    跨栏目内容检索——按标签浏览所有文章。
+
+    [:octicons-arrow-right-24: ACCESS TERMINAL](tags/index.md)
 
 </div>
 
 <div class="eva-divider"></div>
 
-<div class="eva-section">LATEST — 最新内容</div>
+<div class="eva-section">LATEST INTEL — 最新内容</div>
 
 | 文章 | 栏目 | 说明 |
 | :--- | :--- | :--- |
@@ -151,18 +178,21 @@ hide:
 
 <div class="eva-divider"></div>
 
-<div class="eva-section">ROADMAP — 后续计划</div>
+<div class="eva-section">ROADMAP — 补完计划</div>
 
 - [x] 基础站点搭建 & CI 自动部署
 - [x] 技术 / 生活 双栏目结构
-- [x] 标签系统
-- [ ] 自定义域名（调整 `site_url` + `CNAME`）
-- [ ] 评论系统集成（Giscus）
-- [ ] 站点统计（Umami Analytics）
-- [ ] RSS 订阅支持
+- [x] 标签系统 & 文章元数据
+- [x] EVA / NERV 视觉主题
+- [x] MAGI 导航面板
+- [x] NERV 定制 404 页面
+- [ ] Giscus 评论系统（配置 repo-id 后激活）
+- [ ] Umami 站点统计
+- [ ] RSS 订阅
+- [ ] 自定义域名
 
 <div class="eva-divider"></div>
 
 <div class="eva-footer-msg">
-  NERV DOCUMENTATION SYSTEM — BUILT WITH MKDOCS MATERIAL — ALWAYS UPDATING
+  NERV DOCUMENTATION SYSTEM — ALL SYSTEMS NOMINAL — PATTERN BLUE: CLEAR
 </div>
