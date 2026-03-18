@@ -1,21 +1,25 @@
-# 随笔
+# :material-pen: 随笔
 
-这里用于承载非技术内容，保持同样的目录约定与发布流程。
+> 不拘主题，想到什么写什么——记录值得写下来的生活碎片。
 
-## 路径约定
+---
+
+## 文章路径约定
 
 ```text
 docs/life/essays/<slug>/index.md
 ```
 
-## 维护原则
+## 写作原则
 
-- 保持标题与 slug 一致性
-- 图片和附件放在文章目录内
-- 避免直接在栏目页堆积长文，栏目页只做索引和说明
+- 一个话题一个 slug 文件夹
+- 优先记录真实感受和实用信息
+- 允许随时补充和修订，内容是活的
 
-## 示例文章
+---
 
-- [第一周随笔](the-first-week/index.md)
-- [待产与新生儿购物清单整理](pregnancy-newborn-shopping-checklist/index.md)
-- [孕 30 周后到产后 3 个月的时间线规划](pregnancy-birth-postpartum-timeline/index.md)
+## 已发布文章
+
+- [:octicons-file-24: 第一周随笔](the-first-week/index.md)
+- [:octicons-file-24: 待产与新生儿购物清单整理](pregnancy-newborn-shopping-checklist/index.md)
+- [:octicons-file-24: 孕 30 周后到产后 3 个月的时间线规划](pregnancy-birth-postpartum-timeline/index.md)

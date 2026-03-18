@@ -1,15 +1,17 @@
-# AI 算法
+# :material-brain: AI 算法
 
-这里用于沉淀算法、模型与实验相关内容。
+> 大模型训练、安全对齐、数据集工程等前沿探索与实践笔记。
 
-## 适合放什么
+---
 
-- 模型原理拆解
-- 训练与推理实践
-- 评测方法与实验记录
-- 阅读论文后的结构化笔记
+## 关注方向
 
-## 新文章模板建议
+- 大模型安全对齐
+- 后训练技术（DPO / RLHF）
+- 数据集工程与质量控制
+- 模型评估与红队测试
+
+## 文章目录结构
 
 ```text
 docs/tech/ai-algorithms/<slug>/
@@ -17,6 +19,8 @@ docs/tech/ai-algorithms/<slug>/
 └── assets/
 ```
 
-## 首发文章
+---
 
-- [安全 DPO 数据集设计](safety-dpo-dataset-design/index.md)
+## 已发布文章
+
+- [:octicons-file-24: 安全 DPO 数据集设计](safety-dpo-dataset-design/index.md) — LLM 安全对齐的数据集工程完整方法论

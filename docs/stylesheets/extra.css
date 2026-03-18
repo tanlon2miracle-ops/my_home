@@ -1,0 +1,67 @@
+/* === Lingbao Home Custom Styles === */
+
+/* 首页 hero 区域增大标题 */
+h1 {
+  font-weight: 700 !important;
+}
+
+/* Grid Cards 间距与圆角美化 */
+.md-typeset .grid.cards > ul > li {
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.md-typeset .grid.cards > ul > li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+/* 表格美化 */
+.md-typeset table:not([class]) {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.md-typeset table:not([class]) thead {
+  background: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+}
+.md-typeset table:not([class]) thead th {
+  color: var(--md-primary-bg-color) !important;
+  font-weight: 600;
+}
+
+/* Admonition 圆角 */
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 8px;
+}
+
+/* 代码块圆角 */
+.md-typeset pre > code {
+  border-radius: 8px;
+}
+
+/* 底部 footer 文字居中 */
+.md-footer-meta {
+  text-align: center;
+}
+
+/* 让正文区域稍微宽一点（Material 默认 61em） */
+.md-grid {
+  max-width: 72em;
+}
+
+/* 滚动条美化（Webkit） */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--md-default-fg-color--lighter);
+  border-radius: 4px;
+}
+
+/* 暗色模式下 card 边框更明显 */
+[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li {
+  border: 1px solid rgba(255,255,255,0.08);
+}

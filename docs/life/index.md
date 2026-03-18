@@ -1,11 +1,30 @@
-# 生活
+---
+hide:
+  - toc
+---
 
-生活栏目当前先保留一个固定分区：
+# :material-coffee-outline: 生活
 
-- [随笔](essays/index.md)
+> 记录生活中值得写下来的事，不求完美，只求真实。
 
-## 写作方向
+---
 
-- 长短期生活感受
-- 阅读、观影或旅行后的记录
-- 阶段性总结
+<div class="grid cards" markdown>
+
+-   :material-pen:{ .lg .middle } **随笔**
+
+    ---
+
+    不拘主题，想到什么写什么。
+
+    [:octicons-arrow-right-24: 查看文章](essays/index.md)
+
+</div>
+
+---
+
+## 写作原则
+
+- 优先记录**真实感受**
+- 不追求文笔，追求诚实
+- 允许碎碎念，拒绝假大空

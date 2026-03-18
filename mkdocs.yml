@@ -1,5 +1,5 @@
 site_name: Lingbao Home
-site_description: 中文优先的技术与生活文档站
+site_description: 灵宝的个人文档站 — 技术笔记与生活随笔
 site_url: https://tanlon2miracle-ops.github.io/my_home/
 docs_dir: docs
 site_dir: site
@@ -9,19 +9,50 @@ theme:
   name: material
   language: zh
   font: false
+  icon:
+    logo: material/home-circle
+  favicon: null                       # 可后续替换为自定义 favicon
+  palette:
+    # ——— 亮色 ———
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: 切换到暗色模式
+    # ——— 暗色 ———
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: 切换到亮色模式
   features:
-    - navigation.sections
-    - navigation.top
-    - content.code.copy
-    - content.tabs.link
+    - navigation.tabs            # 顶部 Tab 导航
+    - navigation.tabs.sticky     # 滚动时 Tab 保持可见
+    - navigation.sections        # 侧边栏分组展开
+    - navigation.expand          # 默认展开侧边栏
+    - navigation.top             # 返回顶部按钮
+    - navigation.indexes         # index 页作为章节首页
+    - search.suggest             # 搜索建议
+    - search.highlight           # 搜索高亮
+    - content.code.copy          # 代码复制按钮
+    - content.tabs.link          # 关联 Tab 切换
+    - toc.follow                 # 目录跟随滚动
 
 plugins:
-  - search
+  - search:
+      separator: '[\s\u200b\-]'  # 中文分词优化
 
 markdown_extensions:
   - admonition
   - attr_list
   - md_in_html
+  - def_list
+  - footnotes
+  - tables
   - pymdownx.details
   - pymdownx.highlight:
       anchor_linenums: true
@@ -32,33 +63,44 @@ markdown_extensions:
       custom_fences:
         - name: mermaid
           class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_div_format
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - toc:
       permalink: true
+      toc_depth: 3
 
-extra_javascript:
-  - https://unpkg.com/mermaid@11.6.0/dist/mermaid.min.js
-  - javascripts/mermaid-init.js
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/tanlon2miracle-ops/my_home
 
 nav:
   - 首页: index.md
   - 技术:
-      - 总览: tech/index.md
+      - tech/index.md
       - AI 算法:
-          - 栏目页: tech/ai-algorithms/index.md
+          - tech/ai-algorithms/index.md
           - 安全 DPO 数据集设计: tech/ai-algorithms/safety-dpo-dataset-design/index.md
       - 后端:
-          - 栏目页: tech/backend/index.md
+          - tech/backend/index.md
           - 用 MkDocs 搭一个能持续写的站点: tech/backend/hello-mkdocs/index.md
       - 折腾记录:
-          - 栏目页: tech/tinkering/index.md
+          - tech/tinkering/index.md
           - 本地写作与发布工作流: tech/tinkering/local-writing-workflow/index.md
   - 生活:
-      - 总览: life/index.md
+      - life/index.md
       - 随笔:
-          - 栏目页: life/essays/index.md
+          - life/essays/index.md
           - 第一周随笔: life/essays/the-first-week/index.md
           - 待产与新生儿购物清单整理: life/essays/pregnancy-newborn-shopping-checklist/index.md
           - 孕 30 周后到产后 3 个月的时间线规划: life/essays/pregnancy-birth-postpartum-timeline/index.md
+
