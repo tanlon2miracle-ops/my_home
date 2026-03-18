@@ -95,18 +95,16 @@ nav:
           - 安全 DPO 数据集设计: tech/ai-algorithms/safety-dpo-dataset-design/index.md
       - 后端:
           - tech/backend/index.md
-          - 用 MkDocs 搭一个能持续写的站点: tech/backend/hello-mkdocs/index.md
       - 折腾记录:
           - tech/tinkering/index.md
-          - 本地写作与发布工作流: tech/tinkering/local-writing-workflow/index.md
   - 生活:
       - life/index.md
       - 随笔:
           - life/essays/index.md
-          - 第一周随笔: life/essays/the-first-week/index.md
           - 待产与新生儿购物清单整理: life/essays/pregnancy-newborn-shopping-checklist/index.md
           - 孕 30 周后到产后 3 个月的时间线规划: life/essays/pregnancy-birth-postpartum-timeline/index.md
   - 标签: tags/index.md
+
 
 
 

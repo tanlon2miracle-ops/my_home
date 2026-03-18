@@ -20,6 +20,5 @@ docs/life/essays/<slug>/index.md
 
 ## 已发布文章
 
-- [:octicons-file-24: 第一周随笔](the-first-week/index.md)
 - [:octicons-file-24: 待产与新生儿购物清单整理](pregnancy-newborn-shopping-checklist/index.md)
 - [:octicons-file-24: 孕 30 周后到产后 3 个月的时间线规划](pregnancy-birth-postpartum-timeline/index.md)

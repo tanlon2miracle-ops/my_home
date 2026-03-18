@@ -141,8 +141,6 @@ hide:
 | [安全 DPO 数据集设计](tech/ai-algorithms/safety-dpo-dataset-design/index.md) | 技术 · AI 算法 | LLM 安全对齐的数据集工程实践 |
 | [待产与新生儿购物清单](life/essays/pregnancy-newborn-shopping-checklist/index.md) | 生活 · 随笔 | 从研究到下单的完整清单 |
 | [孕 30 周→产后 3 个月时间线](life/essays/pregnancy-birth-postpartum-timeline/index.md) | 生活 · 随笔 | 关键节点与待办事项规划 |
-| [用 MkDocs 搭站点](tech/backend/hello-mkdocs/index.md) | 技术 · 后端 | 本站的搭建过程复盘 |
-| [本地写作与发布工作流](tech/tinkering/local-writing-workflow/index.md) | 技术 · 折腾 | 从 Markdown 到上线的自动化流程 |
 
 <div class="eva-divider"></div>
 
@@ -157,10 +155,11 @@ hide:
 
 - [x] 基础站点搭建 & CI 自动部署
 - [x] 技术 / 生活 双栏目结构
+- [x] 标签系统
 - [ ] 自定义域名（调整 `site_url` + `CNAME`）
+- [ ] 评论系统集成（Giscus）
+- [ ] 站点统计（Umami Analytics）
 - [ ] RSS 订阅支持
-- [ ] 评论系统集成（Giscus / Utterances）
-- [ ] 站点统计（Google Analytics / Umami）
 
 <div class="eva-divider"></div>
 
