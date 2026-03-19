@@ -96,6 +96,15 @@ nav:
           - 模型训练笔记地图: tech/ai-algorithms/current-llm-training-notes-map/index.md
           - LLM 训练资料索引: tech/ai-algorithms/llm-training-reading-map/index.md
           - 安全 DPO 数据集设计: tech/ai-algorithms/safety-dpo-dataset-design/index.md
+          - DeepSeek-R1 技术报告: tech/ai-algorithms/deepseek-r1-tech-report/index.md
+          - Skywork Open Reasoner: tech/ai-algorithms/skywork-open-reasoner/index.md
+          - Open-R1 开源复现: tech/ai-algorithms/open-r1/index.md
+          - AceReason-Nemotron: tech/ai-algorithms/acereason-nemotron/index.md
+          - Open-Reasoner-Zero: tech/ai-algorithms/open-reasoner-zero/index.md
+          - verl 框架: tech/ai-algorithms/verl-framework/index.md
+          - Llama-Nemotron 数据集: tech/ai-algorithms/llama-nemotron-post-training-dataset/index.md
+          - CoPaw + AgentScope 生态: tech/ai-algorithms/copaw-agentscope-ecosystem/index.md
+          - Self-Rewarding LMs 系列: tech/ai-algorithms/self-rewarding-language-models/index.md
       - 后端:
           - tech/backend/index.md
       - 折腾记录:
