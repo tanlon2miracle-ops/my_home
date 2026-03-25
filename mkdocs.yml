@@ -105,6 +105,7 @@ nav:
           - Llama-Nemotron 数据集: tech/ai-algorithms/llama-nemotron-post-training-dataset/index.md
           - CoPaw + AgentScope 生态: tech/ai-algorithms/copaw-agentscope-ecosystem/index.md
           - Self-Rewarding LMs 系列: tech/ai-algorithms/self-rewarding-language-models/index.md
+          - Google TurboQuant: tech/ai-algorithms/google-turboquant/index.md
       - 后端:
           - tech/backend/index.md
       - 折腾记录:

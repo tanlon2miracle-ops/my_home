@@ -57,6 +57,12 @@
 | 07 | [Llama-Nemotron 数据集](llama-nemotron-post-training-dataset/index.md) | NVIDIA | 3300万样本后训练数据集 + 完整工具链 |
 | 10 | [Self-Rewarding LMs 系列](self-rewarding-language-models/index.md) | Meta / Apple | 自我奖励对齐（SRLM + CREAM + Apple SRLM） |
 
+### 推理优化
+
+| # | 标题 | 机构 | 核心贡献 |
+|:---:|:------|:------|:---------|
+| 11 | [Google TurboQuant](google-turboquant/index.md) | Google Research & DeepMind | 在线向量量化：KV Cache 6x 压缩 + 8x 加速，零精度损失 |
+
 ### Agent 框架
 
 | # | 标题 | 机构 | 核心贡献 |
