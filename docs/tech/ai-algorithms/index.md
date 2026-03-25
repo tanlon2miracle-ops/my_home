@@ -63,11 +63,12 @@
 |:---:|:------|:------|:---------|
 | 11 | [Google TurboQuant](google-turboquant/index.md) | Google Research & DeepMind | 在线向量量化：KV Cache 6x 压缩 + 8x 加速，零精度损失 |
 
-### Agent 框架
+### AI Agent 与自主研究
 
 | # | 标题 | 机构 | 核心贡献 |
 |:---:|:------|:------|:---------|
 | 08 | [CoPaw + AgentScope 生态](copaw-agentscope-ecosystem/index.md) | 阿里 AgentScope | Python Agent 框架全景（CoPaw/AgentScope/Runtime/ReMe） |
+| 12 | [AutoResearch 生态](autoresearch-ecosystem/index.md) | Karpathy / aiming-lab 等 | AI 自主研究与优化循环（autoresearch + AutoResearchClaw） |
 
 ---
 

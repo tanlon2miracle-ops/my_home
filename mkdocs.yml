@@ -106,6 +106,7 @@ nav:
           - CoPaw + AgentScope 生态: tech/ai-algorithms/copaw-agentscope-ecosystem/index.md
           - Self-Rewarding LMs 系列: tech/ai-algorithms/self-rewarding-language-models/index.md
           - Google TurboQuant: tech/ai-algorithms/google-turboquant/index.md
+          - AutoResearch 生态: tech/ai-algorithms/autoresearch-ecosystem/index.md
       - 后端:
           - tech/backend/index.md
       - 折腾记录:
