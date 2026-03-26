@@ -33,7 +33,8 @@ theme:
     - navigation.tabs            # 顶部 Tab 导航
     - navigation.tabs.sticky     # 滚动时 Tab 保持可见
     - navigation.sections        # 侧边栏分组展开
-    - navigation.expand          # 默认展开侧边栏
+    # navigation.expand 已移除 → 侧边栏默认折叠
+    - navigation.prune           # 修剪不可见的导航项，减少页面体积
     - navigation.top             # 返回顶部按钮
     - navigation.indexes         # index 页作为章节首页
     - search.suggest             # 搜索建议
@@ -81,6 +82,7 @@ extra_css:
 
 extra_javascript:
   - javascripts/palette-fix.js
+  - javascripts/sidebar-toggle.js
 
 extra:
   social:

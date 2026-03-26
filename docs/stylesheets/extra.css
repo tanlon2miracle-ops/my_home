@@ -45,8 +45,9 @@ body {
   max-width: none !important;
 }
 .md-content__inner {
-  max-width: none !important;
-  margin: 0 !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  padding: 0 2rem;
 }
 .md-typeset {
   max-width: none !important;
@@ -54,8 +55,144 @@ body {
   color: var(--cute-text);
   line-height: 1.8;
 }
+
+/* --- 侧边栏默认隐藏 + 切换机制 --- */
 .md-sidebar--primary { width: 15rem; }
 .md-sidebar--secondary { width: 13rem; }
+
+/* 桌面端：默认隐藏左侧边栏，内容居中铺开 */
+@media (min-width: 76.25em) {
+  .md-sidebar--primary {
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 4;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.08);
+    padding-top: 4rem;
+  }
+  [data-md-color-scheme="slate"] .md-sidebar--primary {
+    background: rgba(34, 34, 59, 0.95);
+  }
+  /* 展开状态 */
+  body.sidebar-open .md-sidebar--primary {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  /* 侧边栏隐藏时，内容区宽度铺满 */
+  .md-content__inner {
+    max-width: 900px !important;
+    transition: max-width 0.3s ease;
+  }
+  body.sidebar-open .md-content__inner {
+    max-width: 800px !important;
+  }
+}
+
+/* 桌面端也默认隐藏右侧目录栏 */
+@media (min-width: 60em) {
+  .md-sidebar--secondary {
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    z-index: 4;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.08);
+    padding-top: 4rem;
+  }
+  [data-md-color-scheme="slate"] .md-sidebar--secondary {
+    background: rgba(34, 34, 59, 0.95);
+  }
+  body.toc-open .md-sidebar--secondary {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* --- 侧边栏切换按钮 --- */
+.sidebar-toggle-btn {
+  position: fixed;
+  bottom: 5rem;
+  left: 1rem;
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(20, 136, 230, 0.2);
+  background: linear-gradient(135deg, var(--cute-sky-dim), rgba(255, 255, 255, 0.9));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(20, 136, 230, 0.12);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  transition: all 0.3s ease;
+  color: var(--cute-sky);
+}
+.sidebar-toggle-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(20, 136, 230, 0.2);
+}
+.toc-toggle-btn {
+  position: fixed;
+  bottom: 5rem;
+  right: 1rem;
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(20, 136, 230, 0.2);
+  background: linear-gradient(135deg, var(--cute-sky-dim), rgba(255, 255, 255, 0.9));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(20, 136, 230, 0.12);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  transition: all 0.3s ease;
+  color: var(--cute-sky);
+}
+.toc-toggle-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(20, 136, 230, 0.2);
+}
+/* 移动端不需要自定义按钮（MkDocs 自带汉堡菜单） */
+@media (max-width: 76.25em) {
+  .sidebar-toggle-btn { display: none !important; }
+}
+@media (max-width: 60em) {
+  .toc-toggle-btn { display: none !important; }
+}
+
+/* --- 遮罩层（点击空白处关闭侧边栏） --- */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  backdrop-filter: blur(2px);
+}
+body.sidebar-open .sidebar-overlay,
+body.toc-open .sidebar-overlay {
+  display: block;
+}
 
 /* ========== 3. 顶部导航 → 通透磨砂 ========== */
 .md-header {
@@ -418,6 +555,10 @@ body {
   }
   .md-typeset h1 {
     font-size: 1.6em !important;
+  }
+  .md-content__inner {
+    max-width: 100% !important;
+    padding: 0 1rem;
   }
 }
 @media (max-width: 76.25em) {
