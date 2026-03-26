@@ -10,6 +10,8 @@ tags:
   - Skills
   - Tools
 ---
+![AI circuit board header](img0-header.jpg)
+
 # OpenClaw 架构深度解析：自托管 AI Agent 操作系统
 
 > **来源**：[Paolo Perazzo - OpenClaw Architecture, Explained](https://ppaolo.substack.com/p/openclaw-system-architecture-overview)（2026-02-12）+ 实际运行经验总结
