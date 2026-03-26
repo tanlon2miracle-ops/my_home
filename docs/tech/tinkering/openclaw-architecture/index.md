@@ -1059,6 +1059,122 @@ ollama pull qwen3-coder:32b
 
 ---
 
+## 十四、推荐 Skills（技能市场精选）⭐
+
+OpenClaw 的能力扩展全靠 Skills。截至 2026 年 2 月，ClawHub 已收录 **13,700+** 社区技能，VoltAgent 社区维护的 [awesome-openclaw-skills](https://github.com/VoltAgent/awesome-openclaw-skills) 精选列表筛选出 5,200+ 经过审核的优质技能。
+
+> ⚠️ **安全提醒**：2026 年 2 月的安全审计在 ClawHub 上标记了 **341 个恶意 Skill**（其中 335 个分发 AMOS macOS 窃取器）。安装前务必检查作者声誉、版本历史和星标数，或使用 Skill Vetter 扫描。
+
+### 14.1 必装 Top 10 精选
+
+| 排名 | Skill 名称 | 下载量 | 类别 | 核心功能 |
+|------|-----------|--------|------|---------|
+| 1 | **Capability Evolver** | 35K | Agent 进化 | 分析历史交互，自动优化 prompt 策略和执行路径 |
+| 2 | **GOG** | 33.8K | 生产力 | Google Workspace 六合一（Gmail/Calendar/Drive/Docs/Sheets/Contacts） |
+| 3 | **self-improving-agent** | 32K | 记忆 | 跨 session 捕获纠正和经验教训，Agent 越用越聪明 |
+| 4 | **Ontology** | 27.6K | 知识图谱 | 结构化实体关系图谱，支持复杂关联查询 |
+| 5 | **Summarize** | 26.1K | 生产力 | 一键总结 URL、PDF、音频、YouTube 视频 |
+| 6 | **GitHub** | 24.8K | 开发 | 管理 Issues、PRs、CI，通过 `gh` CLI 驱动 |
+| 7 | **Notion** | 13.9K | 生产力 | 读写 Notion 页面、数据库、评论 |
+| 8 | **Nano Banana Pro** | 13.4K | 创意 | Gemini 驱动的图片生成和编辑 |
+| 9 | **Agent Browser** | 11K | 自动化 | 浏览器全自动化（表单填写、数据爬取、多标签并行） |
+| 10 | **Obsidian** | 12.4K | 知识管理 | 本地 Obsidian 笔记库集成，无需云端 |
+
+### 14.2 按场景推荐
+
+#### 🔍 搜索与信息获取
+
+| Skill | 特点 | 安装命令 |
+|-------|------|---------|
+| **Tavily** | AI Agent 专用搜索引擎，返回结构化摘要而非链接列表 | `clawhub install tavily` |
+| **Firecrawl CLI** | 处理 JS 重度页面和反爬站点，返回干净 Markdown | `npx -y firecrawl-cli init --browser --all` |
+
+#### 💬 通信与协作
+
+| Skill | 特点 | 安装命令 |
+|-------|------|---------|
+| **Slack** | 搜索和发送 Slack 消息，支持三种回复模式 | `clawhub install slack` |
+| **Himalaya** | IMAP/SMTP 邮件，适配 Outlook/ProtonMail 等任何提供商 | `clawhub install himalaya` |
+| **Eleven Labs Agent** | 高质量语音合成 30+ 语言，支持电话回调 | `clawhub install elevenlabs-agent` |
+
+#### 🛠️ 开发者工具
+
+| Skill | 特点 | 安装命令 |
+|-------|------|---------|
+| **Mcporter** | 在 OpenClaw 内管理 MCP server（安装、配置、OAuth） | `clawhub install mcporter` |
+| **API Gateway** | 100+ 第三方 API 的托管 OAuth（Stripe/Salesforce/HubSpot） | `clawhub install api-gateway` |
+| **OpenAI Whisper** | 本地语音转文字，音频不离开你的机器 | `clawhub install openai-whisper` |
+
+#### 🍎 macOS 原生（零 API Key）
+
+由 OpenClaw 作者 @steipete 维护：
+
+| Skill | 功能 |
+|-------|------|
+| Apple Mail | 邮件管理 |
+| Apple Calendar | 日历事件 |
+| Apple Reminders | 提醒事项 |
+| Apple Notes | 备忘录 |
+| Apple Shortcuts | 快捷指令（所有自定义 Shortcut 可用） |
+
+#### 🔒 安全
+
+| Skill | 特点 |
+|-------|------|
+| **Skill Vetter** (3.5K 下载) | 安装前扫描 Skill 的恶意代码（隐藏网络调用、混淆 shell 命令） |
+
+### 14.3 工作流编排：Clawflows
+
+Clawflows 可以将多个 Skill 串联为自动化流水线：
+
+```yaml
+# 每日研究工作流示例
+workflow: daily-research
+steps:
+  - skill: tavily
+    action: search
+    query: "AI industry news today"
+  - skill: summarize
+    action: digest
+    input: previous_step
+  - skill: mission-control
+    action: add_brief
+    content: previous_step
+```
+
+### 14.4 安装与管理
+
+```bash
+# 搜索
+clawhub search "web scraping"
+
+# 安装
+clawhub install <skill-slug>
+
+# 查看已安装 & 可用
+openclaw skills list --eligible
+
+# 查看详情
+openclaw skills info <skill-name>
+```
+
+### 14.5 生态数据一览
+
+| 指标 | 数据 |
+|------|------|
+| ClawHub 总技能数 | 13,729+（2026.02） |
+| awesome-openclaw-skills 精选 | 5,211 |
+| 已过滤（垃圾/重复/恶意） | 7,215 |
+| 分类数 | 30+ |
+| 月访问量 | 1M+（社区最大第三方资源） |
+
+> 📚 **更多资源**：
+> - [awesome-openclaw-skills（GitHub 精选列表）](https://github.com/VoltAgent/awesome-openclaw-skills)
+> - [ClawHub 官方市场](https://clawhub.ai)
+> - [Firecrawl 的 16 Best Skills 评测](https://www.firecrawl.dev/blog/openclaw-skills)
+
+---
+
 ## 参考链接
 
 - [OpenClaw 官网](https://openclaw.ai/)
