@@ -1,5 +1,5 @@
 site_name: Lingbao Home
-site_description: 鐏靛疂鐨勪釜浜烘枃妗ｇ珯 鈥?鎶€鏈瑪璁颁笌鐢熸椿闅忕瑪
+site_description: 灵宝的个人文档站 — 技术笔记与生活随笔
 site_url: https://tanlon2miracle-ops.github.io/my_home/
 site_author: Lingbao
 docs_dir: docs
@@ -13,39 +13,39 @@ theme:
   font: false
   icon:
     logo: material/home-circle
-  favicon: null                       # 鍙悗缁浛鎹负鑷畾涔?favicon
+  favicon: null                       # 可后续替换为自定义 favicon
   palette:
-    # 鈥斺€斺€?浜壊锛堥粯璁わ紝涓嶈窡绯荤粺锛夆€斺€斺€?
+    # ——— 亮色（默认，不跟系统）———
     - scheme: default
       primary: white
       accent: light-blue
       toggle:
         icon: material/weather-sunny
-        name: 鍒囨崲鍒版殫鑹叉ā寮?馃寵
-    # 鈥斺€斺€?鏆楄壊锛堟墜鍔ㄥ垏鎹級鈥斺€斺€?
+        name: 切换到暗色模式 🌙
+    # ——— 暗色（手动切换）———
     - scheme: slate
       primary: indigo
       accent: pink
       toggle:
         icon: material/weather-night
-        name: 鍒囨崲鍒颁寒鑹叉ā寮?鈽€锔?
+        name: 切换到亮色模式 ☀️
   features:
-    - navigation.tabs            # 椤堕儴 Tab 瀵艰埅
-    - navigation.tabs.sticky     # 婊氬姩鏃?Tab 淇濇寔鍙
-    - navigation.sections        # 渚ц竟鏍忓垎缁勫睍寮€
-    - navigation.expand          # 榛樿灞曞紑渚ц竟鏍?
-    - navigation.top             # 杩斿洖椤堕儴鎸夐挳
-    - navigation.indexes         # index 椤典綔涓虹珷鑺傞椤?
-    - search.suggest             # 鎼滅储寤鸿
-    - search.highlight           # 鎼滅储楂樹寒
-    - content.code.copy          # 浠ｇ爜澶嶅埗鎸夐挳
-    - content.tabs.link          # 鍏宠仈 Tab 鍒囨崲
-    - toc.follow                 # 鐩綍璺熼殢婊氬姩
+    - navigation.tabs            # 顶部 Tab 导航
+    - navigation.tabs.sticky     # 滚动时 Tab 保持可见
+    - navigation.sections        # 侧边栏分组展开
+    - navigation.expand          # 默认展开侧边栏
+    - navigation.top             # 返回顶部按钮
+    - navigation.indexes         # index 页作为章节首页
+    - search.suggest             # 搜索建议
+    - search.highlight           # 搜索高亮
+    - content.code.copy          # 代码复制按钮
+    - content.tabs.link          # 关联 Tab 切换
+    - toc.follow                 # 目录跟随滚动
 
 plugins:
   - tags
   - search:
-      separator: '[\s\u200b\-]'  # 涓枃鍒嗚瘝浼樺寲
+      separator: '[\s\u200b\-]'  # 中文分词优化
 
 markdown_extensions:
   - admonition
@@ -88,38 +88,38 @@ extra:
       link: https://github.com/tanlon2miracle-ops/my_home
 
 nav:
-  - 棣栭〉: index.md
-  - 鎶€鏈?
+  - 首页: index.md
+  - 技术:
       - tech/index.md
-      - AI 绠楁硶:
+      - AI 算法:
           - tech/ai-algorithms/index.md
-          - 妯″瀷璁粌绗旇鍦板浘: tech/ai-algorithms/current-llm-training-notes-map/index.md
-          - LLM 璁粌璧勬枡绱㈠紩: tech/ai-algorithms/llm-training-reading-map/index.md
-          - 瀹夊叏 DPO 鏁版嵁闆嗚璁? tech/ai-algorithms/safety-dpo-dataset-design/index.md
-          - DeepSeek-R1 鎶€鏈姤鍛? tech/ai-algorithms/deepseek-r1-tech-report/index.md
+          - 模型训练笔记地图: tech/ai-algorithms/current-llm-training-notes-map/index.md
+          - LLM 训练资料索引: tech/ai-algorithms/llm-training-reading-map/index.md
+          - 安全 DPO 数据集设计: tech/ai-algorithms/safety-dpo-dataset-design/index.md
+          - DeepSeek-R1 技术报告: tech/ai-algorithms/deepseek-r1-tech-report/index.md
           - Skywork Open Reasoner: tech/ai-algorithms/skywork-open-reasoner/index.md
-          - Open-R1 寮€婧愬鐜? tech/ai-algorithms/open-r1/index.md
+          - Open-R1 开源复现: tech/ai-algorithms/open-r1/index.md
           - AceReason-Nemotron: tech/ai-algorithms/acereason-nemotron/index.md
           - Open-Reasoner-Zero: tech/ai-algorithms/open-reasoner-zero/index.md
-          - verl 妗嗘灦: tech/ai-algorithms/verl-framework/index.md
-          - Llama-Nemotron 鏁版嵁闆? tech/ai-algorithms/llama-nemotron-post-training-dataset/index.md
-          - CoPaw + AgentScope 鐢熸€? tech/ai-algorithms/copaw-agentscope-ecosystem/index.md
-          - Self-Rewarding LMs 绯诲垪: tech/ai-algorithms/self-rewarding-language-models/index.md
+          - verl 框架: tech/ai-algorithms/verl-framework/index.md
+          - Llama-Nemotron 数据集: tech/ai-algorithms/llama-nemotron-post-training-dataset/index.md
+          - CoPaw + AgentScope 生态: tech/ai-algorithms/copaw-agentscope-ecosystem/index.md
+          - Self-Rewarding LMs 系列: tech/ai-algorithms/self-rewarding-language-models/index.md
           - Google TurboQuant: tech/ai-algorithms/google-turboquant/index.md
-          - AutoResearch 鐢熸€? tech/ai-algorithms/autoresearch-ecosystem/index.md
-      - 鍚庣:
+          - AutoResearch 生态: tech/ai-algorithms/autoresearch-ecosystem/index.md
+      - 后端:
           - tech/backend/index.md
-      - 鎶樿吘璁板綍:
+      - 折腾记录:
           - tech/tinkering/index.md
           - OpenClaw 架构深度解析: tech/tinkering/openclaw-architecture/index.md
-  - 鐢熸椿:
+  - 生活:
       - life/index.md
-      - 闅忕瑪:
+      - 随笔:
           - life/essays/index.md
-          - 寰呬骇涓庢柊鐢熷効璐墿娓呭崟鏁寸悊: life/essays/pregnancy-newborn-shopping-checklist/index.md
-          - 瀛?30 鍛ㄥ悗鍒颁骇鍚?3 涓湀鐨勬椂闂寸嚎瑙勫垝: life/essays/pregnancy-birth-postpartum-timeline/index.md
-          - 鏈堝珎闈㈣瘯鎸囧崡涓庡悎鍚岃鐐? life/essays/yuesao-interview-guide/index.md
-  - 鏍囩: tags/index.md
+          - 待产与新生儿购物清单整理: life/essays/pregnancy-newborn-shopping-checklist/index.md
+          - 孕 30 周后到产后 3 个月的时间线规划: life/essays/pregnancy-birth-postpartum-timeline/index.md
+          - 月嫂面试指南与合同要点: life/essays/yuesao-interview-guide/index.md
+  - 标签: tags/index.md
 
 
 
