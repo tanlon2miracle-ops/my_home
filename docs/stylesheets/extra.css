@@ -1,4 +1,4 @@
-/* === Lingbao Home — Cute & Fresh Theme 🌸 === */
+/* === Lingbao Home — Cute & Fresh Theme 📌 === */
 
 /* ========== 0. 字体导入 ========== */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
@@ -126,7 +126,7 @@ body {
   position: relative;
 }
 .md-typeset h2::before {
-  content: "🌸 ";
+  content: "📌 ";
 }
 .md-typeset h3 {
   font-family: var(--cute-font) !important;
@@ -134,7 +134,7 @@ body {
   color: var(--cute-pink-deep) !important;
 }
 .md-typeset h3::before {
-  content: "✨ ";
+  content: "▸ ";
 }
 
 /* ========== 5. Grid Cards → 云朵卡片 ========== */
@@ -243,11 +243,11 @@ body {
 /* 可爱 Emoji 覆盖默认图标 */
 .md-typeset .admonition.note > .admonition-title::before,
 .md-typeset details.note > summary::before {
-  content: "🌸 " !important;
+  content: "📌 " !important;
 }
 .md-typeset .admonition.tip > .admonition-title::before,
 .md-typeset details.tip > summary::before {
-  content: "✨ " !important;
+  content: "▸ " !important;
 }
 .md-typeset .admonition.warning > .admonition-title::before,
 .md-typeset details.warning > summary::before {
