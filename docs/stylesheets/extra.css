@@ -37,7 +37,7 @@ body {
   max-width: 100% !important;
 }
 .md-main__inner {
-  max-width: 1400px !important;
+  max-width: 1600px !important;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
@@ -45,7 +45,7 @@ body {
   max-width: none !important;
 }
 .md-content__inner {
-  max-width: 900px !important;
+  max-width: 1100px !important;
   margin: 0 auto !important;
   padding: 0 2rem;
 }
@@ -87,11 +87,11 @@ body {
   }
   /* 侧边栏隐藏时，内容区宽度铺满 */
   .md-content__inner {
-    max-width: 900px !important;
+    max-width: 1100px !important;
     transition: max-width 0.3s ease;
   }
   body.sidebar-open .md-content__inner {
-    max-width: 800px !important;
+    max-width: 960px !important;
   }
 }
 
