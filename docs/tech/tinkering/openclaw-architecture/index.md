@@ -825,7 +825,7 @@ ACP 允许 OpenClaw 运行外部 Agent harness 作为子进程：
 用户在 Discord #笔记 频道发了一条消息，并附上了一个 Substack 文章链接（Paolo Perazzo 的 OpenClaw 架构解析原文）：
 
 > "你直接按照这个文档来吧"
-> "本地 markdown 然后上传到 https://github.com/tanlon2miracle-ops/my_home"
+> "本地 markdown 然后上传到 https://github.com/xxxx/my_home"
 
 随后又陆续追加了多轮需求：
 > "优化一下，左边侧边栏默认不出"
