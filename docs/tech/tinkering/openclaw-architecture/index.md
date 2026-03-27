@@ -63,7 +63,293 @@ Gateway 作为唯一入口，承载了整个安全体系：
 
 ---
 
-## 三、Agent Loop（执行循环）⭐
+## 三、Skills 系统 ⭐
+
+Skills 是 OpenClaw 的能力扩展单元——可复用的指令包，告诉 Agent 如何完成特定类型的任务。
+
+### 4.1 三层加载优先级
+
+```
+优先级从高到低：
+
+① workspace skills     ~/.openclaw/workspace/skills/
+   └── 用户自定义，最高优先级，可覆盖同名 skill
+
+② managed/local skills ~/.openclaw/extensions/<plugin>/skills/
+   └── 插件附带的 skills（如 feishu 插件带 feishu-doc skill）
+
+③ bundled skills       <install_dir>/node_modules/openclaw/skills/
+   └── OpenClaw 自带的内置 skills
+```
+
+**覆盖规则**：如果 workspace 中存在与 bundled 同名的 skill，workspace 版本优先。这让用户可以定制内置行为。
+
+### 4.2 SKILL.md 格式（AgentSkills 兼容）
+
+每个 Skill 是一个目录，核心文件是 `SKILL.md`：
+
+```
+skills/
+└── my-skill/
+    ├── SKILL.md          # 必须，核心指令文件
+    ├── metadata.json     # 可选，元数据和门控条件
+    ├── scripts/          # 可选，辅助脚本
+    │   └── helper.py
+    └── references/       # 可选，参考资料
+        └── api-docs.md
+```
+
+**SKILL.md 示例**：
+
+```markdown
+# My Custom Skill
+
+## When to Use
+当用户要求 xxx 时使用此 skill。
+
+## Instructions
+1. 首先执行 `scripts/helper.py` 获取数据
+2. 然后根据结果生成报告
+3. 输出到 workspace 目录
+
+## References
+参考 references/api-docs.md 了解 API 格式。
+```
+
+**metadata.json 示例**：
+
+```json
+{
+  "name": "my-skill",
+  "description": "用一句话描述此 skill 的功能，用于匹配对话内容",
+  "version": "1.0.0",
+  "openclaw": {
+    "requires": {
+      "bins": ["python3", "git"],
+      "env": ["OPENAI_API_KEY"],
+      "config": ["channels.discord"]
+    }
+  }
+}
+```
+
+### 4.3 门控机制（Gating）
+
+`metadata.openclaw.requires` 定义了 Skill 的运行前提条件：
+
+| 门控类型 | 说明 | 示例 |
+|---------|------|------|
+| `bins` | 系统中必须存在的可执行文件 | `["python3", "ffmpeg"]` |
+| `env` | 必须设置的环境变量 | `["OPENAI_API_KEY"]` |
+| `config` | openclaw.json 中必须存在的配置路径 | `["channels.discord"]` |
+
+**不满足条件的 Skill 不会出现在 `<available_skills>` 列表中**，从根本上避免 Agent 尝试调用不可用的能力。
+
+### 4.4 按需注入（On-Demand Injection）
+
+**关键设计**：Skills 不是全部塞进系统 prompt。OpenClaw 的做法是：
+
+```
+Step 1: 系统 prompt 中注入所有可用 Skill 的摘要清单：
+
+<available_skills>
+  <skill>
+    <name>weather</name>
+    <description>Get weather forecasts...</description>
+    <location>~/.openclaw/skills/weather/SKILL.md</location>
+  </skill>
+  <skill>
+    <name>github</name>
+    <description>GitHub operations via gh CLI...</description>
+    <location>~/.openclaw/skills/github/SKILL.md</location>
+  </skill>
+  ... 每个 skill 仅 ~100 tokens
+</available_skills>
+
+Step 2: 模型根据对话内容判断需要哪个 Skill
+
+Step 3: 模型调用 read 工具读取对应 SKILL.md
+
+Step 4: SKILL.md 内容进入对话历史，指导后续行为
+```
+
+**为什么不直接全注入？** Token 开销计算：
+
+```
+假设有 30 个 Skills，每个 SKILL.md 平均 800 tokens：
+- 全量注入：30 × 800 = 24,000 tokens（每次请求都浪费）
+- 按需注入：30 × 100（摘要）+ 1 × 800（按需加载）= 3,800 tokens
+
+节省约 84% 的 prompt token 开销
+```
+
+### 4.5 ClawHub 技能市场
+
+ClawHub（clawhub.com）是 OpenClaw 的官方 Skill 市场，类似 npm：
+
+```bash
+# 搜索 skill
+clawhub search "weather"
+
+# 安装 skill（安装到 ~/.openclaw/workspace/skills/）
+clawhub install weather
+
+# 更新到最新版本
+clawhub update weather
+
+# 同步所有已安装 skill
+clawhub sync
+
+# 发布自己的 skill
+clawhub publish ./skills/my-skill
+```
+
+### 4.6 创建自定义 Skill
+
+```bash
+# 1. 创建目录
+mkdir -p ~/.openclaw/workspace/skills/my-tool
+
+# 2. 写 SKILL.md（必须）
+cat > ~/.openclaw/workspace/skills/my-tool/SKILL.md << 'EOF'
+# My Tool Skill
+
+## When to Use
+当用户需要 xxx 时触发。
+
+## Steps
+1. ...
+2. ...
+EOF
+
+# 3. 可选：添加 metadata.json（门控条件、版本信息）
+# 4. 可选：添加 scripts/ 和 references/ 目录
+# 5. 重启 gateway 或等待自动热加载
+```
+
+---
+
+## 四、Tools 工具体系 ⭐
+
+### 5.1 内置工具清单
+
+| 工具 | 功能 | 典型用途 |
+|------|------|---------|
+| `exec` | 执行 shell 命令 | 运行脚本、安装包、Git 操作 |
+| `process` | 管理后台进程 | 轮询长任务、发送输入、PTY 交互 |
+| `read` / `write` / `edit` | 文件操作 | 读写代码、配置、文档 |
+| `browser` | Chromium 浏览器自动化 | 网页操作、截图、数据提取 |
+| `canvas` | Agent 驱动的可视化工作区 | 展示 UI、A2UI 交互 |
+| `nodes` | 设备控制（手机/IoT） | 摄像头、屏幕录制、定位 |
+| `message` | 跨平台消息发送 | Discord/Telegram/飞书等 |
+| `web_search` | 网络搜索（Brave API） | 实时信息检索 |
+| `web_fetch` | 网页内容抓取 | 读取文章、API 文档 |
+| `tts` | 文本转语音 | 语音回复 |
+| `subagents` | 子 Agent 管理 | 多 Agent 协作 |
+| `feishu_*` | 飞书文档/表格/Wiki | 飞书生态集成 |
+
+### 5.2 工具策略（Tool Policies）
+
+工具可用性通过 **策略链** 控制，从粗到细：
+
+```json5
+// openclaw.json
+{
+  "tools": {
+    // 全局允许/拒绝列表
+    "allow": ["exec", "read", "write", "web_search"],
+    "deny": ["browser"],
+
+    // 预定义 profile（快捷方式）
+    "profile": "coding",  // minimal | coding | messaging | full
+
+    // 按 provider 覆盖
+    "byProvider": {
+      "openai/*": {
+        "deny": ["exec"]  // OpenAI 模型禁用 exec
+      },
+      "anthropic/claude-*": {
+        "profile": "full"  // Claude 全量工具
+      }
+    }
+  }
+}
+```
+
+**Profile 预设**：
+
+| Profile | 包含工具 |
+|---------|---------|
+| `minimal` | read, write, edit, web_search, web_fetch |
+| `coding` | minimal + exec, process |
+| `messaging` | minimal + message, tts |
+| `full` | 所有可用工具 |
+
+### 5.3 Tool Groups
+
+工具按功能分组，便于策略配置中批量引用：
+
+```json5
+{
+  "tools": {
+    "allow": [
+      "group:runtime",     // exec, process
+      "group:fs",          // read, write, edit
+      "group:web",         // web_search, web_fetch
+      "group:ui",          // browser, canvas
+      "group:messaging",   // message, tts
+      "group:sessions",    // subagents, sessions_*
+      "group:memory",      // 记忆相关
+      "group:nodes",       // 设备控制
+      "group:automation",  // cron, webhooks
+      "group:openclaw"     // gateway 管理
+    ]
+  }
+}
+```
+
+### 5.4 循环检测（Loop Detection）
+
+Agent 有时会陷入无效循环（重复执行相同工具调用）。OpenClaw 内置三种检测器：
+
+| 检测器 | 触发条件 | 示例 |
+|--------|---------|------|
+| `genericRepeat` | 连续 N 次相同工具+相同参数 | 反复 `exec("git status")` |
+| `knownPollNoProgress` | 轮询类操作无进展 | `process(poll)` 反复无新输出 |
+| `pingPong` | 两个工具调用交替循环 | `read → write → read → write` |
+
+触发后 Agent 会收到循环警告，强制跳出。
+
+### 5.5 工具如何呈现给模型
+
+工具通过**双通道**传递给模型：
+
+1. **Tool Schema 通道**：每个工具的 JSON Schema（函数名、参数、描述）通过 API 的 `tools` 参数传递
+2. **System Prompt 通道**：工具的使用指南、限制、最佳实践写在系统 prompt 中
+
+```
+模型看到的：
+
+System Prompt:
+  "... 你可以使用 exec 工具执行 shell 命令。
+   使用 pty=true 处理需要 TTY 的交互式命令 ..."
+
+Tools (JSON Schema):
+  {
+    "name": "exec",
+    "description": "Execute shell commands...",
+    "parameters": {
+      "command": { "type": "string" },
+      "pty": { "type": "boolean" },
+      "timeout": { "type": "number" },
+      ...
+    }
+  }
+```
+
+---
+
+## 五、Agent Loop（执行循环）⭐
 
 这是 OpenClaw 的核心引擎，实现在 `src/agents/piembeddedrunner.ts`。每条消息到达后经历完整的 4 步流程：
 
@@ -290,292 +576,6 @@ Session C: [msg1]                       ──→ 串行执行
 │   ├── history.json
 │   └── state.json
 └── ...
-```
-
----
-
-## 四、Skills 系统 ⭐
-
-Skills 是 OpenClaw 的能力扩展单元——可复用的指令包，告诉 Agent 如何完成特定类型的任务。
-
-### 4.1 三层加载优先级
-
-```
-优先级从高到低：
-
-① workspace skills     ~/.openclaw/workspace/skills/
-   └── 用户自定义，最高优先级，可覆盖同名 skill
-
-② managed/local skills ~/.openclaw/extensions/<plugin>/skills/
-   └── 插件附带的 skills（如 feishu 插件带 feishu-doc skill）
-
-③ bundled skills       <install_dir>/node_modules/openclaw/skills/
-   └── OpenClaw 自带的内置 skills
-```
-
-**覆盖规则**：如果 workspace 中存在与 bundled 同名的 skill，workspace 版本优先。这让用户可以定制内置行为。
-
-### 4.2 SKILL.md 格式（AgentSkills 兼容）
-
-每个 Skill 是一个目录，核心文件是 `SKILL.md`：
-
-```
-skills/
-└── my-skill/
-    ├── SKILL.md          # 必须，核心指令文件
-    ├── metadata.json     # 可选，元数据和门控条件
-    ├── scripts/          # 可选，辅助脚本
-    │   └── helper.py
-    └── references/       # 可选，参考资料
-        └── api-docs.md
-```
-
-**SKILL.md 示例**：
-
-```markdown
-# My Custom Skill
-
-## When to Use
-当用户要求 xxx 时使用此 skill。
-
-## Instructions
-1. 首先执行 `scripts/helper.py` 获取数据
-2. 然后根据结果生成报告
-3. 输出到 workspace 目录
-
-## References
-参考 references/api-docs.md 了解 API 格式。
-```
-
-**metadata.json 示例**：
-
-```json
-{
-  "name": "my-skill",
-  "description": "用一句话描述此 skill 的功能，用于匹配对话内容",
-  "version": "1.0.0",
-  "openclaw": {
-    "requires": {
-      "bins": ["python3", "git"],
-      "env": ["OPENAI_API_KEY"],
-      "config": ["channels.discord"]
-    }
-  }
-}
-```
-
-### 4.3 门控机制（Gating）
-
-`metadata.openclaw.requires` 定义了 Skill 的运行前提条件：
-
-| 门控类型 | 说明 | 示例 |
-|---------|------|------|
-| `bins` | 系统中必须存在的可执行文件 | `["python3", "ffmpeg"]` |
-| `env` | 必须设置的环境变量 | `["OPENAI_API_KEY"]` |
-| `config` | openclaw.json 中必须存在的配置路径 | `["channels.discord"]` |
-
-**不满足条件的 Skill 不会出现在 `<available_skills>` 列表中**，从根本上避免 Agent 尝试调用不可用的能力。
-
-### 4.4 按需注入（On-Demand Injection）
-
-**关键设计**：Skills 不是全部塞进系统 prompt。OpenClaw 的做法是：
-
-```
-Step 1: 系统 prompt 中注入所有可用 Skill 的摘要清单：
-
-<available_skills>
-  <skill>
-    <name>weather</name>
-    <description>Get weather forecasts...</description>
-    <location>~/.openclaw/skills/weather/SKILL.md</location>
-  </skill>
-  <skill>
-    <name>github</name>
-    <description>GitHub operations via gh CLI...</description>
-    <location>~/.openclaw/skills/github/SKILL.md</location>
-  </skill>
-  ... 每个 skill 仅 ~100 tokens
-</available_skills>
-
-Step 2: 模型根据对话内容判断需要哪个 Skill
-
-Step 3: 模型调用 read 工具读取对应 SKILL.md
-
-Step 4: SKILL.md 内容进入对话历史，指导后续行为
-```
-
-**为什么不直接全注入？** Token 开销计算：
-
-```
-假设有 30 个 Skills，每个 SKILL.md 平均 800 tokens：
-- 全量注入：30 × 800 = 24,000 tokens（每次请求都浪费）
-- 按需注入：30 × 100（摘要）+ 1 × 800（按需加载）= 3,800 tokens
-
-节省约 84% 的 prompt token 开销
-```
-
-### 4.5 ClawHub 技能市场
-
-ClawHub（clawhub.com）是 OpenClaw 的官方 Skill 市场，类似 npm：
-
-```bash
-# 搜索 skill
-clawhub search "weather"
-
-# 安装 skill（安装到 ~/.openclaw/workspace/skills/）
-clawhub install weather
-
-# 更新到最新版本
-clawhub update weather
-
-# 同步所有已安装 skill
-clawhub sync
-
-# 发布自己的 skill
-clawhub publish ./skills/my-skill
-```
-
-### 4.6 创建自定义 Skill
-
-```bash
-# 1. 创建目录
-mkdir -p ~/.openclaw/workspace/skills/my-tool
-
-# 2. 写 SKILL.md（必须）
-cat > ~/.openclaw/workspace/skills/my-tool/SKILL.md << 'EOF'
-# My Tool Skill
-
-## When to Use
-当用户需要 xxx 时触发。
-
-## Steps
-1. ...
-2. ...
-EOF
-
-# 3. 可选：添加 metadata.json（门控条件、版本信息）
-# 4. 可选：添加 scripts/ 和 references/ 目录
-# 5. 重启 gateway 或等待自动热加载
-```
-
----
-
-## 五、Tools 工具体系 ⭐
-
-### 5.1 内置工具清单
-
-| 工具 | 功能 | 典型用途 |
-|------|------|---------|
-| `exec` | 执行 shell 命令 | 运行脚本、安装包、Git 操作 |
-| `process` | 管理后台进程 | 轮询长任务、发送输入、PTY 交互 |
-| `read` / `write` / `edit` | 文件操作 | 读写代码、配置、文档 |
-| `browser` | Chromium 浏览器自动化 | 网页操作、截图、数据提取 |
-| `canvas` | Agent 驱动的可视化工作区 | 展示 UI、A2UI 交互 |
-| `nodes` | 设备控制（手机/IoT） | 摄像头、屏幕录制、定位 |
-| `message` | 跨平台消息发送 | Discord/Telegram/飞书等 |
-| `web_search` | 网络搜索（Brave API） | 实时信息检索 |
-| `web_fetch` | 网页内容抓取 | 读取文章、API 文档 |
-| `tts` | 文本转语音 | 语音回复 |
-| `subagents` | 子 Agent 管理 | 多 Agent 协作 |
-| `feishu_*` | 飞书文档/表格/Wiki | 飞书生态集成 |
-
-### 5.2 工具策略（Tool Policies）
-
-工具可用性通过 **策略链** 控制，从粗到细：
-
-```json5
-// openclaw.json
-{
-  "tools": {
-    // 全局允许/拒绝列表
-    "allow": ["exec", "read", "write", "web_search"],
-    "deny": ["browser"],
-
-    // 预定义 profile（快捷方式）
-    "profile": "coding",  // minimal | coding | messaging | full
-
-    // 按 provider 覆盖
-    "byProvider": {
-      "openai/*": {
-        "deny": ["exec"]  // OpenAI 模型禁用 exec
-      },
-      "anthropic/claude-*": {
-        "profile": "full"  // Claude 全量工具
-      }
-    }
-  }
-}
-```
-
-**Profile 预设**：
-
-| Profile | 包含工具 |
-|---------|---------|
-| `minimal` | read, write, edit, web_search, web_fetch |
-| `coding` | minimal + exec, process |
-| `messaging` | minimal + message, tts |
-| `full` | 所有可用工具 |
-
-### 5.3 Tool Groups
-
-工具按功能分组，便于策略配置中批量引用：
-
-```json5
-{
-  "tools": {
-    "allow": [
-      "group:runtime",     // exec, process
-      "group:fs",          // read, write, edit
-      "group:web",         // web_search, web_fetch
-      "group:ui",          // browser, canvas
-      "group:messaging",   // message, tts
-      "group:sessions",    // subagents, sessions_*
-      "group:memory",      // 记忆相关
-      "group:nodes",       // 设备控制
-      "group:automation",  // cron, webhooks
-      "group:openclaw"     // gateway 管理
-    ]
-  }
-}
-```
-
-### 5.4 循环检测（Loop Detection）
-
-Agent 有时会陷入无效循环（重复执行相同工具调用）。OpenClaw 内置三种检测器：
-
-| 检测器 | 触发条件 | 示例 |
-|--------|---------|------|
-| `genericRepeat` | 连续 N 次相同工具+相同参数 | 反复 `exec("git status")` |
-| `knownPollNoProgress` | 轮询类操作无进展 | `process(poll)` 反复无新输出 |
-| `pingPong` | 两个工具调用交替循环 | `read → write → read → write` |
-
-触发后 Agent 会收到循环警告，强制跳出。
-
-### 5.5 工具如何呈现给模型
-
-工具通过**双通道**传递给模型：
-
-1. **Tool Schema 通道**：每个工具的 JSON Schema（函数名、参数、描述）通过 API 的 `tools` 参数传递
-2. **System Prompt 通道**：工具的使用指南、限制、最佳实践写在系统 prompt 中
-
-```
-模型看到的：
-
-System Prompt:
-  "... 你可以使用 exec 工具执行 shell 命令。
-   使用 pty=true 处理需要 TTY 的交互式命令 ..."
-
-Tools (JSON Schema):
-  {
-    "name": "exec",
-    "description": "Execute shell commands...",
-    "parameters": {
-      "command": { "type": "string" },
-      "pty": { "type": "boolean" },
-      "timeout": { "type": "number" },
-      ...
-    }
-  }
 ```
 
 ---
