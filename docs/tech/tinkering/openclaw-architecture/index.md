@@ -833,25 +833,50 @@ Discord 群聊消息
 ┌─ ③ 上下文组装 ────────────────────────────────────────┐
 │  加载 session 历史（含之前对话上下文）                   │
 │  组合系统 prompt：AGENTS.md + SOUL.md + IDENTITY.md    │
-│  匹配 Skills：检测到 tech-note-writer 可能相关         │
+│  扫描 <available_skills> 列表，匹配当前对话：            │
+│    ├─ tavily（搜索）→ 匹配关键词 "文档/调研"            │
+│    ├─ crawl-for-ai（网页抓取）→ 匹配 "Substack URL"    │
+│    ├─ github（Git 操作）→ 匹配 "上传到 github"         │
+│    └─ 其他 20+ skills 不匹配，不加载（节省 token）       │
 │  记忆搜索：查找相关的历史笔记操作经验                    │
 └───────────────────────────────────────────────────────┘
       │
       ▼
-┌─ ④ 模型调用 + 工具执行（多轮循环）─────────────────────┐
+┌─ ④ Skill 按需加载 ───────────────────────────────────┐
+│  模型判断需要 tavily skill → read(tavily/SKILL.md)     │
+│  SKILL.md 内容进入对话历史，指导后续搜索行为             │
+│  （此时只加载了 1 个 skill ≈ 800 tokens，               │
+│   而非全部 30 个 ≈ 24000 tokens）                      │
+└───────────────────────────────────────────────────────┘
+      │
+      ▼
+┌─ ⑤ 模型调用 + 工具执行（多轮循环）─────────────────────┐
 │                                                        │
-│  Turn 1: 模型决定先读网页                               │
+│  Turn 1: 用 Tavily skill 搜索补充资料                   │
+│  ├─ exec: node tavily/scripts/search.mjs "OpenClaw"    │
+│  └─ 获取多个相关来源的摘要结果                          │
+│                                                        │
+│  Turn 2: 抓取 Substack 原文                             │
 │  ├─ 调用 web_fetch → 403（Cloudflare 拦截）            │
-│  ├─ 模型自动降级：browser.open → browser.snapshot      │
+│  ├─ 降级到 crawl-for-ai skill：                        │
+│  │   read(crawl-for-ai/SKILL.md) → 学习爬取指令        │
+│  │   exec: 调用本地 Crawl4AI 实例                      │
 │  └─ 获取文章完整内容（~15000 字）                       │
 │                                                        │
-│  Turn 2: 写本地文件                                     │
-│  ├─ 分析文章结构，用中文重写为技术笔记                   │
-│  └─ write → openclaw-architecture-notes.md             │
+│  Turn 3: 写本地文件                                     │
+│  ├─ 分析文章结构，结合 Tavily 搜索结果补充               │
+│  ├─ 用中文重写为结构化技术笔记                          │
+│  └─ write → docs/tech/tinkering/.../index.md           │
 │                                                        │
-│  Turn 3: 推送 GitHub                                    │
+│  Turn 4: 推送 GitHub（使用 github skill 的指导）         │
+│  ├─ read(github/SKILL.md) → 学习 Git 操作最佳实践       │
 │  ├─ exec: git clone → 复制文件 → git add + commit      │
 │  └─ exec: git push origin main                         │
+│                                                        │
+│  Turn 5: 后续迭代（侧边栏优化、成本章节、Skills 章节）    │
+│  ├─ 用户追加需求 → Agent 在同一 session 内继续           │
+│  ├─ 再次用 tavily 搜索成本数据、Skills 排行              │
+│  └─ 多轮 write + edit + git push                       │
 │                                                        │
 └───────────────────────────────────────────────────────┘
       │
@@ -862,11 +887,24 @@ Discord 群聊消息
 └───────────────────────────────────────────────────────┘
 ```
 
+### 本案例实际使用的 Skills
+
+| Skill | 用途 | 触发方式 |
+|-------|------|---------|
+| **tavily** | 搜索 OpenClaw 成本数据、Skills 排行榜等补充资料 | 模型判断需要外部搜索，按需 `read(SKILL.md)` |
+| **crawl-for-ai** | 抓取被 Cloudflare 拦截的 Substack 页面 | `web_fetch` 返回 403 后自动降级 |
+| **github** | 指导 Git 操作规范（commit message、push 策略） | 匹配到 "上传到 github" 关键词 |
+
+> 💡 **Skill 按需加载的实际效果**：本案例的 Agent 上下文中有 25+ 个可用 Skill，但只加载了 3 个的完整 SKILL.md。节省了约 `22 × 800 = 17,600 tokens` 的系统 prompt 开销。
+
 ### 关键观察
 
-- **工具降级**：`web_fetch` 被 Cloudflare 拦截后，Agent 自主切换到 `browser`，无需人工干预
-- **多工具链式调用**：一条消息触发 browser → write → exec(git) 等 8+ 次工具调用，全部自动编排
+- **Skill 智能匹配**：模型根据对话内容自动选择需要的 Skill，不需要手动指定
+- **按需加载实战**：25+ 可用 Skill 中只加载 3 个，按需注入真正节省了大量 token
+- **工具降级**：`web_fetch` 被 Cloudflare 拦截后，Agent 自主切换到 `crawl-for-ai` skill，无需人工干预
+- **多 Skill 协作**：tavily（搜索）→ crawl-for-ai（抓取）→ write（生成）→ github（推送），形成完整的自动化流水线
 - **上下文连续性**：Agent 记住前几条消息中提到的 URL 和目标仓库，跨消息理解意图
+- **迭代式协作**：用户在同一 session 内追加需求（优化侧边栏、补充成本章节），Agent 无缝衔接
 
 ---
 
