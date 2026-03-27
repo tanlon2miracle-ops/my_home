@@ -851,7 +851,7 @@ Discord #笔记频道消息
       ▼
 ┌─ ② 访问控制 + Session 解析 ───────────────────────────┐
 │  检查 group policy → #笔记频道在允许名单中               │
-│  Session → agent:main:discord:channel:1481255435108356269│
+│  Session → agent:main:discord:channel:xxxxx│
 │  信任级别：群聊（但该频道配置了扩展工具集）               │
 └───────────────────────────────────────────────────────┘
       │
@@ -883,7 +883,7 @@ Discord #笔记频道消息
 │  └─ 提取文章完整内容（~15000 字英文原文）                │
 │                                                        │
 │  Turn 2: 写本地 MkDocs 结构                             │
-│  ├─ exec: git clone https://github.com/tanlon2miracle-ops/my_home│
+│  ├─ exec: git clone https://github.com/xxxx/my_home│
 │  ├─ 分析文章结构，用中文重写为 MkDocs 格式技术笔记       │
 │  ├─ 添加 YAML frontmatter（tags, date）                 │
 │  └─ write → docs/tech/tinkering/openclaw-architecture/index.md│
