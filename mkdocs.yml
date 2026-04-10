@@ -114,6 +114,7 @@ nav:
       - 折腾记录:
           - tech/tinkering/index.md
           - OpenClaw 架构深度解析: tech/tinkering/openclaw-architecture/index.md
+          - Hermes Agent 深度解析: tech/tinkering/hermes-agent/index.md
   - 生活:
       - life/index.md
       - 随笔:
