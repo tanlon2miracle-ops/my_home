@@ -179,6 +179,39 @@ hide:
 
 <div class="cute-divider"></div>
 
+
+## :material-new-box: 最新笔记
+
+<div class="grid cards" markdown>
+
+-   :material-brain: **自进化 Agent 调研**
+
+    ---
+
+    Agent 如何从一次性工具变成持续成长的数字员工？三大方案深度对比：Hermes Agent / Anthropic Managed Agents / OpenClaw
+
+    [:octicons-arrow-right-24: 阅读全文](tech/tinkering/self-evolving-agent/index.md)
+
+-   :material-robot: **Hermes Agent 技术笔记**
+
+    ---
+
+    Nous Research 出品的自进化 Agent 深度解析：架构、记忆、技能系统、训练闭环
+
+    [:octicons-arrow-right-24: 阅读全文](tech/tinkering/hermes-agent/index.md)
+
+-   :material-cog: **OpenClaw 架构解析**
+
+    ---
+
+    AI Agent 网关架构全解：Agent Loop、Skills、Tools、多通道、Sub-Agents
+
+    [:octicons-arrow-right-24: 阅读全文](tech/tinkering/openclaw-architecture/index.md)
+
+</div>
+
+<div class="cute-divider"></div>
+
 <div class="cute-footer-msg">
   🌸 用文字记录，让时间有迹可循 ✨
 </div>
