@@ -1,28 +1,14 @@
 # :material-wrench: 折腾记录
 
-> 工具链配置、环境搭建、工作流优化——把折腾的过程记下来。
+> 工具链、环境搭建、各种奇技淫巧 — 把踩过的坑记下来。
 
 ---
 
-## 收录范围
+## 全部文章
 
-- 开发环境搭建
-- 工具链配置技巧
-- 自动化脚本
-- 各种踩坑与解决方案
-
-=== "文章结构"
-
-    ```text
-    docs/tech/tinkering/<slug>/index.md
-    ```
-
-=== "写作原则"
-
-    记录真实折腾过程，包含踩坑和最终方案。
-
----
-
-## 已发布文章
-
-_暂无，敬请期待。_
+| 文章 | 简介 |
+| :--- | :--- |
+| [OpenClaw 架构深度解析](openclaw-architecture/index.md) | AI Agent 网关架构全解：Agent Loop、Skills、Tools、多通道、Sub-Agents |
+| [Hermes Agent 深度解析](hermes-agent/index.md) | Nous Research 出品的自进化 Agent 架构、记忆、技能系统 |
+| [Hermes Agent 技术进阶](hermes-agent/advanced.md) | 训练闭环、高级功能深入 |
+| [自进化 Agent 调研](self-evolving-agent/index.md) | Hermes Agent / Anthropic Managed Agents / OpenClaw 三方案对比 |

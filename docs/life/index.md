@@ -9,17 +9,15 @@ hide:
 
 ---
 
-<div class="grid cards" markdown>
+## :material-pen: 随笔
 
--   :material-pen:{ .lg .middle } **随笔**
+不拘主题，想到什么写什么。
 
-    ---
-
-    不拘主题，想到什么写什么。
-
-    [:octicons-arrow-right-24: 查看文章](essays/index.md)
-
-</div>
+| 文章 | 简介 |
+| :--- | :--- |
+| [待产与新生儿购物清单](essays/pregnancy-newborn-shopping-checklist/index.md) | 从研究到下单的完整清单 |
+| [孕 30 周→产后 3 个月时间线](essays/pregnancy-birth-postpartum-timeline/index.md) | 关键节点与待办事项规划 |
+| [月嫂面试指南与合同要点](essays/yuesao-interview-guide/index.md) | 面试筛选 + 合同避坑 |
 
 ---
 
